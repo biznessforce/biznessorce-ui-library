@@ -1,6 +1,6 @@
 {
-  "name": "@biznessforce/common",
-  "version": "0.0.3",
+  "name": "@biznessforce/ui-lib",
+  "version": "0.0.2",
   "description": "This is test button made for a tutorial",
   "main": "dist/cjs/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
-    "url": "git@github.com:biznessforce/@biznessforce/common.git"
+    "url": "git@github.com:biznessforce/@biznessforce/ui-lib.git"
   },
   "scripts": {
     "release": "standard-version --release-as patch",
