@@ -9,3 +9,4 @@ export * from "./FormColField";
 export * from "./Utils";
 export * from "./HasPermission";
 export * from "./InfoFooter";
+export * from "./FileUploadContainer";
