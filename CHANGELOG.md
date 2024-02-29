@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com///compare/v0.0.15...v0.0.16) (2024-02-29)
+
+
+### Features
+
+* :sparkles: Added FileUploadContainer to common components ([b54b4cc](https://github.com///commit/b54b4cc2b2fc4b4a95889f9cd6fa16c860f202b7))
+* :sparkles: Added new reusable components & fixed header & sidebar ([d6034cb](https://github.com///commit/d6034cb9ad8e8f473d250ccf62b1d45c0582be33))
+
 ### [0.0.15](https://github.com///compare/v0.0.14...v0.0.15) (2024-02-29)
 
 ### [0.0.14](https://github.com///compare/v0.0.13...v0.0.14) (2024-02-26)
