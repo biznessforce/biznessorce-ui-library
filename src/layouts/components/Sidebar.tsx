@@ -1,7 +1,7 @@
 import { hasPermissions } from "../../common";
 import { Layout, Menu } from "antd";
 import { isBoolean, omit } from "lodash";
-import { useState } from "react";
+// import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import React from "react";
 
@@ -59,14 +59,22 @@ export function Sidebar({
   authorities,
   SUPER_ADMIN,
 }: SidebarProps) {
-  const [collapsed, setCollapsed] = useState(true);
+  // const [collapsed, setCollapsed] = useState(true);
   const history = useHistory();
 
   return (
     <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={(value) => setCollapsed(value)}
+      collapsed //={collapsed}
+      // collapsible
+      // onCollapse={(value) => setCollapsed(value)}
+      style={{
+        overflow: "auto",
+        height: "100vh",
+        position: "fixed",
+        left: 0,
+        top: 0,
+        bottom: 0,
+      }}
     >
       <div
         className="demo-logo-vertical"

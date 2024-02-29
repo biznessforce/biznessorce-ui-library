@@ -46,8 +46,18 @@ export function Header({
   }, []);
 
   return (
-    <AntHeader style={{ padding: 0, background: colorBgContainer }}>
-      <Flex justify="space-between" align="center" className="h-100 px-4">
+    <AntHeader
+      style={{
+        padding: 0,
+        background: colorBgContainer,
+        position: "sticky",
+        top: 0,
+        zIndex: 1,
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <Flex justify="space-between" align="center" className="h-100 w-100 px-4">
         <Space>
           <Typography.Title level={5} className="mb-0 fw-medium">
             {title}

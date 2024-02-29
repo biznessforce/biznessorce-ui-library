@@ -7,3 +7,5 @@ export { default as NoDataContainer } from "./NoDataContainer";
 export { default as PageNotFound } from "./PageNotFound";
 export * from "./FormColField";
 export * from "./Utils";
+export * from "./HasPermission";
+export * from "./InfoFooter";

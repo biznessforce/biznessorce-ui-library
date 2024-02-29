@@ -1,8 +1,8 @@
-import { Layout as AntLayout } from 'antd';
-import React from 'react';
-import Footer, { FooterProps } from './Footer';
-import Header, { HeaderProps } from './Header';
-import Subheader, { SubheaderProps } from './Subheader';
+import { Layout as AntLayout } from "antd";
+import React from "react";
+import Footer, { FooterProps } from "./Footer";
+import Header, { HeaderProps } from "./Header";
+import Subheader, { SubheaderProps } from "./Subheader";
 
 const { Content } = AntLayout;
 
@@ -22,7 +22,7 @@ export function PageLayout({
   bgColor,
 }: PageLayoutProps) {
   return (
-    <AntLayout>
+    <AntLayout style={{ marginLeft: 80 }}>
       <Header {...headerProps} />
 
       {/* Subheader */}
@@ -30,8 +30,8 @@ export function PageLayout({
 
       <AntLayout
         style={{
-          padding: '18px 24px',
-          backgroundColor: bgColor || '#ebeff3',
+          padding: "18px 24px",
+          backgroundColor: bgColor || "#ebeff3",
         }}
       >
         <Content>{children}</Content>
