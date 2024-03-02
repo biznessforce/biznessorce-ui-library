@@ -1,16 +1,16 @@
 import { Space, Typography } from "antd";
-import { Moment } from "moment";
+import { Dayjs } from "dayjs";
 import React from "react";
 
 type InfoFooterProps = {
   info_1: {
     title: string;
-    date: Moment | null;
+    date: Dayjs | null;
     userBy: string;
   };
   info_2?: {
     title: string;
-    date: Moment | null;
+    date: Dayjs | null;
     userBy: string;
   };
 };

@@ -1,5 +1,5 @@
 import { capitalize, identity, pickBy } from "lodash";
-import moment, { Moment } from "moment";
+import dayjs, { Dayjs } from "dayjs";
 
 export const DAY_TIMING = {
   MORNING: "morning",
@@ -26,10 +26,10 @@ export const firstLettersPipe = (word: string) => {
 };
 
 export const formatDate = (
-  date: Moment | Date | string,
+  date: Dayjs | Date | string,
   format = "DD-MM-YYYY"
 ) => {
-  return date ? moment(date).format(format) : "";
+  return date ? dayjs(date).format(format) : "";
 };
 
 export const getFlagEmoji = (countryCode: string) => {
@@ -145,12 +145,12 @@ export const firstLetterCaps = (name: string) => {
   // return startCase(name?.toLowerCase());
 };
 
-export const getGreetingTime = (m: Moment) => {
+export const getGreetingTime = (m: Dayjs) => {
   let g = null; //return g
 
   if (!m || !m.isValid()) {
     return;
-  } //if we can't find a valid or filled moment, we return.
+  } //if we can't find a valid or filled dayjs, we return.
 
   const split_afternoon = 12; //24hr time to split the afternoon
   const split_evening = 15; //24hr time to split the evening
@@ -171,7 +171,7 @@ export const getGreetingTime = (m: Moment) => {
 };
 
 export const getIcon = (shiftTime: string) => {
-  const greetings = getGreetingTime(moment(shiftTime?.split(" ")[0], "ha"));
+  const greetings = getGreetingTime(dayjs(shiftTime?.split(" ")[0], "ha"));
   if (greetings === DAY_TIMING.MORNING) {
     return " ";
   }
