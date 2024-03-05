@@ -1,1 +1,1 @@
-export { default } from "./ProgressLine";
+export { default as ProgressLine } from "./ProgressLine";
