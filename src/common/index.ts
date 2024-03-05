@@ -10,3 +10,4 @@ export * from "./Utils";
 export * from "./HasPermission";
 export * from "./InfoFooter";
 export * from "./FileUploadContainer";
+export * from "./ProgressLine";
