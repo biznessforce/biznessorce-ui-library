@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.19](https://github.com///compare/v0.0.18...v0.0.19) (2024-03-05)
+
+
+### Features
+
+* :sparkles: Added ProgressLine Component ([1db3cc2](https://github.com///commit/1db3cc21f8c84eeeaf045df883dfcea0c625b54a))
+
+
+### Bug Fixes
+
+* :bug: Fixed export issue ([91b7b77](https://github.com///commit/91b7b772c221ad8406ac33b34c17ed19e361e223))
+
 ### [0.0.18](https://github.com///compare/v0.0.17...v0.0.18) (2024-03-05)
 
 ### [0.0.17](https://github.com///compare/v0.0.16...v0.0.17) (2024-03-02)
