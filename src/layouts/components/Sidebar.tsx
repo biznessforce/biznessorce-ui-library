@@ -1,5 +1,5 @@
 import { hasPermissions } from "../../common";
-import { Layout, Menu } from "antd";
+import { Image, Layout, Menu } from "antd";
 import { isBoolean, omit } from "lodash";
 // import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -51,6 +51,7 @@ export type SidebarProps = {
   authorities: string[];
   SUPER_ADMIN: string | null;
   logoBgColor?: string;
+  logo?: string;
 };
 
 export function Sidebar({
@@ -58,6 +59,7 @@ export function Sidebar({
   logoBgColor,
   authorities,
   SUPER_ADMIN,
+  logo,
 }: SidebarProps) {
   // const [collapsed, setCollapsed] = useState(true);
   const history = useHistory();
@@ -79,7 +81,9 @@ export function Sidebar({
       <div
         className="demo-logo-vertical"
         style={{ height: "64px", background: logoBgColor || "#002140" }}
-      />
+      >
+        {logo && <Image src={logo} alt="logo" />}
+      </div>
       <Menu
         theme="dark"
         defaultSelectedKeys={["dashboard"]}
