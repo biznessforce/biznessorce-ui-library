@@ -5,6 +5,7 @@ export { default as NetworkDetector } from "./NetworkDetector";
 export { default as GlobalErrorHandler } from "./GlobalErrorHandler";
 export { default as NoDataContainer } from "./NoDataContainer";
 export { default as PageNotFound } from "./PageNotFound";
+
 export * from "./FormComponents";
 export * from "./Utils";
 export * from "./HasPermission";
@@ -12,5 +13,4 @@ export * from "./InfoFooter";
 export * from "./FileUploadContainer";
 export * from "./ProgressLine";
 
-// Data
-export { default as Countries } from "./data/countries.json";
+export * from "./data";
