@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import DEV_IMAGE_PATH from "../../assets/images/development.webp";
 import USER_FIND_IMAGE_PATH from "../../assets/images/user-find.png";
 import ERROR_IMAGE_PATH from "../../assets/images/service-error.png";
+import { Button, Typography } from "antd";
 
 export const NO_DATA_CONTAINER_MESSAGES = {
   NO_DATA: {
@@ -112,37 +113,45 @@ const DataContainer: FC<DataContainerProps> = ({
             {/* Data Not Found Content */}
             {type === NO_DATA_CONTAINER_MESSAGES.NO_DATA.key && (
               <>
-                <h3>{NO_DATA_CONTAINER_MESSAGES.NO_DATA.title}</h3>
-                <p className="text-muted">
+                <Typography.Title level={4}>
+                  {NO_DATA_CONTAINER_MESSAGES.NO_DATA.title}
+                </Typography.Title>
+                <Typography.Text type="secondary">
                   {desc || NO_DATA_CONTAINER_MESSAGES.NO_DATA.description}
-                </p>
+                </Typography.Text>
               </>
             )}
             {/* No data selected Content */}
             {type === NO_DATA_CONTAINER_MESSAGES.SELECT.key && (
               <>
-                <h3>{title || NO_DATA_CONTAINER_MESSAGES.SELECT.title}</h3>
-                <p className="text-muted">
+                <Typography.Title level={4}>
+                  {title || NO_DATA_CONTAINER_MESSAGES.SELECT.title}
+                </Typography.Title>
+                <Typography.Text type="secondary">
                   {desc || NO_DATA_CONTAINER_MESSAGES.SELECT.description}
-                </p>
+                </Typography.Text>
               </>
             )}
             {/* Loading Content */}
             {type === NO_DATA_CONTAINER_MESSAGES.LOADING.key && (
               <>
-                <h3>{NO_DATA_CONTAINER_MESSAGES.LOADING.title}</h3>
-                <p className="text-muted">
+                <Typography.Title level={4}>
+                  {NO_DATA_CONTAINER_MESSAGES.LOADING.title}
+                </Typography.Title>
+                <Typography.Text type="secondary">
                   {NO_DATA_CONTAINER_MESSAGES.LOADING.description}!
-                </p>
+                </Typography.Text>
               </>
             )}
             {/* Loading Content */}
             {type === NO_DATA_CONTAINER_MESSAGES.DEV.key && (
               <>
-                <h3>{NO_DATA_CONTAINER_MESSAGES.DEV.title}</h3>
-                <p className="text-muted">
+                <Typography.Title level={4}>
+                  {NO_DATA_CONTAINER_MESSAGES.DEV.title}
+                </Typography.Title>
+                <Typography.Text type="secondary">
                   {NO_DATA_CONTAINER_MESSAGES.DEV.description}
-                </p>
+                </Typography.Text>
               </>
             )}
             {/* Error Content */}
@@ -150,18 +159,20 @@ const DataContainer: FC<DataContainerProps> = ({
               <>
                 {!desc ? (
                   <>
-                    <h3>{NO_DATA_CONTAINER_MESSAGES.ERROR.title}</h3>
-                    <p className="text-muted">
+                    <Typography.Title level={4}>
+                      {NO_DATA_CONTAINER_MESSAGES.ERROR.title}
+                    </Typography.Title>
+                    <Typography.Text type="secondary">
                       {NO_DATA_CONTAINER_MESSAGES.ERROR.description}
-                    </p>
+                    </Typography.Text>
                   </>
                 ) : (
-                  <p className={"text-danger"}>{desc}</p>
+                  <Typography.Text type="danger">{desc}</Typography.Text>
                 )}
                 {onClick && (
-                  <button className="btn btn-sm btn-primary" onClick={onClick}>
+                  <Button type="primary" onClick={onClick}>
                     Retry
-                  </button>
+                  </Button>
                 )}
               </>
             )}
