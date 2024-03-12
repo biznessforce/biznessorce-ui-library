@@ -1,4 +1,5 @@
 import {
+  ArrowLeftOutlined,
   FullscreenExitOutlined,
   FullscreenOutlined,
   UserOutlined,
@@ -17,11 +18,13 @@ import {
   theme,
 } from "antd";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 const { Header: AntHeader } = Layout;
 
 export type HeaderProps = {
   title: string;
+  showBackButton?: boolean;
   toolSlot: React.ReactNode;
   onActivityClick: () => void;
   loggedUserName: string;
@@ -31,6 +34,7 @@ export type HeaderProps = {
 export function Header({
   title = "",
   toolSlot,
+  showBackButton = false,
   onActivityClick,
   loggedUserName,
   dropdownMenu,
@@ -38,6 +42,9 @@ export function Header({
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const history = useHistory();
+
   const [isFullScreen, setFullScreen] = React.useState(document.fullscreen);
 
   React.useEffect(() => {
@@ -59,6 +66,15 @@ export function Header({
     >
       <Flex justify="space-between" align="center" className="h-100 w-100 px-4">
         <Space>
+          {showBackButton && (
+            <Button
+              type="text"
+              icon={<ArrowLeftOutlined />}
+              onClick={() => {
+                history.goBack();
+              }}
+            />
+          )}
           <Typography.Title level={5} className="mb-0 fw-medium">
             {title}
           </Typography.Title>
