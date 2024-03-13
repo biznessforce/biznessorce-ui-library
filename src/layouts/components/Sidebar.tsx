@@ -79,10 +79,10 @@ export function Sidebar({
       }}
     >
       <div
-        className="demo-logo-vertical"
+        className="demo-logo-vertical d-flex justify-content-center align-items-center"
         style={{ height: "64px", background: logoBgColor || "#002140" }}
       >
-        {logo && <Image src={logo} alt="logo" />}
+        {logo && <Image src={logo} alt="logo" preview={false} />}
       </div>
       <Menu
         theme="dark"
