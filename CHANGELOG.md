@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.22](https://github.com///compare/v0.0.21...v0.0.22) (2024-03-13)
+
+
+### Bug Fixes
+
+* :lipstick: Updated logo styles ([0287b38](https://github.com///commit/0287b38f7ae719456d55ee03eb0d8c2622be8f71))
+
 ### [0.0.21](https://github.com///compare/v0.0.19...v0.0.21) (2024-03-12)
 
 
