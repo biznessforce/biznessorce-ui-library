@@ -1,4 +1,4 @@
-import { Space, Typography } from "antd";
+import { Flex, Space, Typography } from "antd";
 import { Dayjs } from "dayjs";
 import React from "react";
 
@@ -18,9 +18,9 @@ type InfoFooterProps = {
 const InfoFooter = ({ info_1, info_2 }: InfoFooterProps) => {
   return (
     <>
-      <div className="mb-5">
+      <Flex vertical className="my-3" gap={10}>
         <Space>
-          <Typography.Text strong className="text-muted">
+          <Typography.Text strong type="secondary">
             {info_1.title}
           </Typography.Text>
           <Typography.Text strong>{info_1.userBy}</Typography.Text>
@@ -33,7 +33,7 @@ const InfoFooter = ({ info_1, info_2 }: InfoFooterProps) => {
 
         {info_2 && (
           <Space>
-            <Typography.Text strong className="text-muted">
+            <Typography.Text strong type="secondary">
               {info_2.title}
             </Typography.Text>
             <Typography.Text strong>{info_2.userBy}</Typography.Text>
@@ -44,7 +44,7 @@ const InfoFooter = ({ info_1, info_2 }: InfoFooterProps) => {
             )}
           </Space>
         )}
-      </div>
+      </Flex>
     </>
   );
 };

@@ -34,13 +34,14 @@ const Ezdrawer = () => {
   const constructTitle = () => {
     if (typeof title === "string") {
       return (
-        <Typography.Text
-          className="mb-0 mr-4 mt-4"
+        <Typography.Title
+          level={4}
+          className="mb-0 mt-4"
           style={{ width: 250 }}
           ellipsis={{ tooltip: title }}
         >
           {firstLetterCaps(title)}
-        </Typography.Text>
+        </Typography.Title>
       );
     } else {
       return <div className="mt-4">{title}</div>;
@@ -59,6 +60,7 @@ const Ezdrawer = () => {
       onClose={closeDrawer}
       styles={{ body: { padding: "5px" } }}
       closable={false}
+      keyboard={false}
       {...restProps}
     >
       <Button
