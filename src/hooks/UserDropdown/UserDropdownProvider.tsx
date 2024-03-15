@@ -59,7 +59,7 @@ export const UserDropdownProvider = ({
   };
 
   const onSignOut = () => {
-    history.push("/logout", { redirect: location.pathname });
+    history.push(`/logout?redirect=${location.pathname}`);
   };
 
   const items = [
