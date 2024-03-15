@@ -24,8 +24,9 @@ const { Header: AntHeader } = Layout;
 
 export type HeaderProps = {
   title: string;
-  showBackButton?: boolean;
   toolSlot: React.ReactNode;
+  showBackButton?: boolean;
+  onBackClick?: () => void;
   onActivityClick: () => void;
   loggedUserName: string;
   dropdownMenu: MenuProps;
@@ -35,6 +36,7 @@ export function Header({
   title = "",
   toolSlot,
   showBackButton = false,
+  onBackClick,
   onActivityClick,
   loggedUserName,
   dropdownMenu,
@@ -71,7 +73,7 @@ export function Header({
               type="text"
               icon={<ArrowLeftOutlined />}
               onClick={() => {
-                history.goBack();
+                onBackClick ? onBackClick() : history.goBack();
               }}
             />
           )}
