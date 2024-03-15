@@ -37,8 +37,8 @@ const Ezdrawer = () => {
         <Typography.Title
           level={4}
           className="mb-0 mt-4"
-          style={{ width: 250 }}
-          ellipsis={{ tooltip: title }}
+          // style={{ width: 250 }}
+          // ellipsis={{ tooltip: title }}
         >
           {firstLetterCaps(title)}
         </Typography.Title>
