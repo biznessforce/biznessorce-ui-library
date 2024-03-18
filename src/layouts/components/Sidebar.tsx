@@ -66,6 +66,8 @@ export function Sidebar({
 
   return (
     <Sider
+      className="sidebar-menus"
+      width={"64px"}
       collapsed //={collapsed}
       // collapsible
       // onCollapse={(value) => setCollapsed(value)}
