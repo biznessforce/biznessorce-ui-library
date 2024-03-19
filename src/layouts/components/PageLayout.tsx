@@ -22,7 +22,7 @@ export function PageLayout({
   bgColor,
 }: PageLayoutProps) {
   return (
-    <AntLayout style={{ marginLeft: 80 }}>
+    <AntLayout style={{ marginLeft: 64 }}>
       <Header {...headerProps} />
 
       {/* Subheader */}
