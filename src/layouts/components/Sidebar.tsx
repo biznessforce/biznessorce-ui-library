@@ -3,7 +3,7 @@ import { Image, Layout, Menu } from "antd";
 import { isBoolean, omit } from "lodash";
 // import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 
 const { Sider } = Layout;
 
@@ -61,16 +61,19 @@ export function Sidebar({
   SUPER_ADMIN,
   logo,
 }: SidebarProps) {
-  // const [collapsed, setCollapsed] = useState(true);
   const history = useHistory();
+  const [selectedMenu, setSelectedMenu] = React.useState<string>("dashboard");
+
+  useEffect(() => {
+    const path = window.location.pathname.split("/");
+    setSelectedMenu(path[1]);
+  }, []);
 
   return (
     <Sider
       className="sidebar-menus"
       width={"64px"}
-      collapsed //={collapsed}
-      // collapsible
-      // onCollapse={(value) => setCollapsed(value)}
+      collapsed
       style={{
         overflow: "auto",
         height: "100vh",
@@ -88,12 +91,14 @@ export function Sidebar({
       </div>
       <Menu
         theme="dark"
-        defaultSelectedKeys={["dashboard"]}
-        mode="inline"
-        items={getItems(authorities, menus, SUPER_ADMIN)}
-        onClick={({ key }) => {
+        selectable
+        selectedKeys={[selectedMenu]}
+        onSelect={({ key }) => {
+          setSelectedMenu(key);
           history.push(`/${key}`);
         }}
+        mode="inline"
+        items={getItems(authorities, menus, SUPER_ADMIN)}
       />
     </Sider>
   );
