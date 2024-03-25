@@ -1,10 +1,8 @@
 import {
-  ArrowLeftOutlined,
   FullscreenExitOutlined,
   FullscreenOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { toggleFullScreen } from "../../common";
 import {
   Avatar,
   Button,
@@ -18,15 +16,13 @@ import {
   theme,
 } from "antd";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { toggleFullScreen } from "../../common";
 
 const { Header: AntHeader } = Layout;
 
 export type HeaderProps = {
-  title: string;
+  title: string | React.ReactNode;
   toolSlot: React.ReactNode;
-  showBackButton?: boolean;
-  onBackClick?: () => void;
   onActivityClick: () => void;
   loggedUserName: string;
   dropdownMenu: MenuProps;
@@ -35,8 +31,6 @@ export type HeaderProps = {
 export function Header({
   title = "",
   toolSlot,
-  showBackButton = false,
-  onBackClick,
   onActivityClick,
   loggedUserName,
   dropdownMenu,
@@ -44,8 +38,6 @@ export function Header({
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-
-  const history = useHistory();
 
   const [isFullScreen, setFullScreen] = React.useState(document.fullscreen);
 
@@ -68,18 +60,14 @@ export function Header({
     >
       <Flex justify="space-between" align="center" className="h-100 w-100 px-4">
         <Space>
-          {showBackButton && (
-            <Button
-              type="text"
-              icon={<ArrowLeftOutlined />}
-              onClick={() => {
-                onBackClick ? onBackClick() : history.goBack();
-              }}
-            />
+          {typeof title === "string" ? (
+            <Typography.Title level={5} className="mb-0 fw-semibold">
+              {title}
+            </Typography.Title>
+          ) : (
+            <>{title}</>
           )}
-          <Typography.Title level={5} className="mb-0 fw-medium">
-            {title}
-          </Typography.Title>
+
           <Space className="ms-2">{toolSlot}</Space>
         </Space>
         <Space>
