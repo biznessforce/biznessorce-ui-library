@@ -47,7 +47,7 @@ const useAPI = (
   const [loading, setLoading] = React.useState(false);
   const [submitted, setSubmitted] = React.useState<boolean>(false);
   const [status, setStatus] = React.useState<{
-    type: "danger" | "success";
+    type: "error" | "success";
     msg: string;
   } | null>();
 
@@ -65,19 +65,19 @@ const useAPI = (
 
       if (config.showGlobalError && config.onThrowError) {
         // dispatch(updateGlobalError({ type: 'danger', msg: '' }));
-        config.onThrowError({ type: "danger", msg: "" });
+        config.onThrowError({ type: "error", msg: "" });
       }
 
       setSubmitted(true);
     } catch (err: any) {
       console.log(err);
 
-      setStatus({ type: "danger", msg: constructErrorMessage(err) });
+      setStatus({ type: "error", msg: constructErrorMessage(err) });
 
       errCallback && errCallback(constructErrorMessage(err));
       if (config.showGlobalError && config.onThrowError) {
         config.onThrowError({
-          type: "danger",
+          type: "error",
           msg: constructErrorMessage(err),
         });
 
