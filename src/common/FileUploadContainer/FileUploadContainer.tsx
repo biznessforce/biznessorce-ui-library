@@ -15,7 +15,7 @@ type FileImportTypes = {
   title: string;
   visible: boolean;
   isLoading: boolean;
-  error: { type: "success" | "danger"; msg: string };
+  error: { type: "success" | "error"; msg: string };
   onCloseHandle: () => void;
   onSubmitHandle: (selectedFile: File) => void;
   accept?: string;

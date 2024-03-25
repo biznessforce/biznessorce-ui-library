@@ -47,7 +47,7 @@ export const UserDropdownProvider = ({
     () => {
       setStatus({ type: "success", msg: "Change password completed" });
     },
-    (e: any) => setStatus({ type: "danger", msg: constructErrorMessage(e) })
+    (e: any) => setStatus({ type: "error", msg: constructErrorMessage(e) })
   );
 
   const handleSubmit = () => {
