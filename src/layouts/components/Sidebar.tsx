@@ -67,7 +67,7 @@ export function Sidebar({
   useEffect(() => {
     const path = window.location.pathname.split("/");
     setSelectedMenu(path[1]);
-  }, []);
+  }, [history]);
 
   return (
     <Sider
