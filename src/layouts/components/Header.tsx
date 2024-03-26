@@ -23,7 +23,7 @@ const { Header: AntHeader } = Layout;
 export type HeaderProps = {
   title: string | React.ReactNode;
   toolSlot: React.ReactNode;
-  onActivityClick: () => void;
+  rightToolSlot: React.ReactNode;
   loggedUserName: string;
   dropdownMenu: MenuProps;
 };
@@ -31,7 +31,7 @@ export type HeaderProps = {
 export function Header({
   title = "",
   toolSlot,
-  onActivityClick,
+  rightToolSlot,
   loggedUserName,
   dropdownMenu,
 }: HeaderProps) {
@@ -71,11 +71,8 @@ export function Header({
           <Space className="ms-2">{toolSlot}</Space>
         </Space>
         <Space>
-          <Tooltip title="Recent Activity" placement="bottom">
-            <Button type="default" onClick={onActivityClick}>
-              <Typography.Text>Recent Activity</Typography.Text>
-            </Button>
-          </Tooltip>
+          {rightToolSlot}
+
           <Tooltip
             title={isFullScreen ? "Exit Fullscreen" : "Expand to fullscreen"}
           >
