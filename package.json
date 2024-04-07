@@ -16,7 +16,8 @@
   "scripts": {
     "release": "standard-version --release-as patch",
     "build": "rollup -c --bundleConfigAsCjs",
-    "push": "npm run release && npm run build && npm publish"
+    "push": "npm run release && npm run build && npm publish",
+    "release:tags": "git push --follow-tags origin main"
   },
   "author": "@ikismail",
   "type": "module",
