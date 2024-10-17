@@ -1,6 +1,5 @@
 import { constructErrorMessage } from "../../common";
-
-import { Button, Form, Input, Modal } from "antd";
+import { Button, Form, Input, MenuProps, Modal } from "antd";
 import { trim } from "lodash";
 import { createContext, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
@@ -16,12 +15,14 @@ export const UserDropdownContext = createContext({
 type DropdownProviderProps = {
   children: JSX.Element;
   account: { fullName: string; accountId: string };
+  disableChangePassword: boolean;
   changePasswordAPI: () => AxiosPromise;
 };
 
 export const UserDropdownProvider = ({
   children,
   account,
+  disableChangePassword,
   changePasswordAPI,
 }: DropdownProviderProps) => {
   const history = useHistory();
@@ -62,12 +63,13 @@ export const UserDropdownProvider = ({
     history.push(`/logout?redirect=${location.pathname}`);
   };
 
-  const items = [
+  const items: MenuProps["items"] = [
     { key: "0", label: "My Profile" },
     {
       key: "1",
       label: "Change Password",
       onClick: () => setShowPasswordChange(true),
+      disabled: disableChangePassword,
     },
     { key: "2", danger: true, label: "Sign Out", onClick: onSignOut },
   ];
