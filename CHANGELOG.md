@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.35](https://github.com///compare/v0.0.34...v0.0.35) (2024-10-18)
+
+
+### Features
+
+* :sparkles: Added disabling change password functionality ([a70426e](https://github.com///commit/a70426ecc6034d39a8e969a5540a959be55e15e2))
+
 ### [0.0.34](https://github.com///compare/v0.0.33...v0.0.34) (2024-03-26)
 
 ### [0.0.33](https://github.com///compare/v0.0.32...v0.0.33) (2024-03-26)
