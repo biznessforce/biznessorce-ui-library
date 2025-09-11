@@ -1,19 +1,93 @@
-# @bzforce/common
+# @biznessforce/ui-lib
 
-This library contains common components that are frequently used in software development. It provides a set of reusable functions, classes, and utilities that can be utilized across different projects and applications.
+This library contains common UI components built with React and Ant Design for Biznessforce applications. It provides a set of reusable components that can be utilized across different projects and applications.
 
-The common library aims to simplify and streamline the development process by providing pre-built solutions for common tasks and functionalities. It promotes code reusability, maintainability, and consistency across projects.
+## Installation
 
-Some of the common components included in this library are:
+To install the library, use npm or yarn:
 
-- Utility functions for string manipulation, file handling, and data validation.
-- Custom data structures and algorithms.
-- Logging and error handling mechanisms.
-- Networking and communication modules.
-- User interface components and widgets.
+```bash
+npm install @biznessforce/ui-lib
+# or
+yarn add @biznessforce/ui-lib
+```
 
-By using the common library, developers can save time and effort by leveraging existing solutions instead of reinventing the wheel. It encourages modular and scalable software design, allowing developers to focus on the core logic of their applications.
+## Usage
 
-To use the common library, simply import the desired components into your project and start utilizing their functionalities. Make sure to refer to the library's documentation for detailed usage instructions and examples.
+Import components from the library:
 
-Note: This documentation is a general description of a common library and may vary depending on the specific implementation and purpose of the library.
+```jsx
+import { Button } from '@biznessforce/ui-lib';
+
+function App() {
+  return (
+    <Button>Click Me</Button>
+  );
+}
+```
+
+## Available Components
+
+- Button: Enhanced Ant Design button component
+- ErrorBoundary: Component for handling React errors gracefully
+- FileUploadContainer: Component for file uploads
+- And more...
+
+## Development
+
+### Prerequisites
+
+- Node.js
+- Yarn or npm
+
+### Building the Library
+
+To build the library:
+
+```bash
+yarn build
+# or
+npm run build
+```
+
+This uses Rollup to bundle the components and generates output in the `dist` directory.
+
+### Releasing a New Version
+
+The project uses `standard-version` for versioning. To release a new version:
+
+```bash
+yarn release
+# or
+npm run release
+```
+
+This will:
+1. Bump the version in package.json
+2. Update the CHANGELOG.md file
+3. Commit these changes
+4. Create a new git tag
+
+To push the changes and publish the package:
+
+```bash
+yarn push
+# or
+npm run push
+```
+
+Alternatively, you can run:
+
+```bash
+git push --follow-tags origin main && npm publish
+```
+
+## Dependencies
+
+This library uses the following peer dependencies:
+- React
+- Ant Design
+- React Router DOM
+- And others as specified in package.json
+
+Make sure to install these dependencies in your project.
