@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.36](https://github.com///compare/v0.0.35...v0.0.36) (2025-09-11)
+
+
+### Bug Fixes
+
+* update peerDependencies for @ant-design/icons, antd, and react ([4eaaae1](https://github.com///commit/4eaaae1f5b12e95a9e1c30123f745f7e07b05842))
+* use local node_modules binaries and update dependencies for ui-lib package ([291fb45](https://github.com///commit/291fb45756c12468fdae0e4907615f475bfeb82c))
+
 ### [0.0.35](https://github.com///compare/v0.0.34...v0.0.35) (2024-10-18)
 
 
