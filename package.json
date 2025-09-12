@@ -22,41 +22,41 @@
   "author": "@ikismail",
   "type": "module",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-image": "^3.0.3",
-    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "@types/lodash": "^4.14.202",
-    "@types/node": "^20.11.20",
-    "@types/react": "^18.2.58",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^24.3.1",
+    "@types/react": "^19.1.12",
     "@types/react-router-dom": "^5.3.3",
     "antd": "^5.27.3",
-    "react": "^18.2.0",
-    "rollup": "^4.12.0",
-    "rollup-plugin-dts": "^6.1.0",
+    "react": "^19.1.1",
+    "rollup": "^4.50.1",
+    "rollup-plugin-dts": "^6.2.3",
     "rollup-plugin-image": "^1.0.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-preserve-directives": "^0.4.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "standard-version": "^9.5.0",
-    "tslib": "^2.6.2",
-    "typescript": "^5.3.3",
-    "axios": "^1.6.7",
-    "react-redux": "^9.1.0"
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.2",
+    "axios": "^1.11.0",
+    "react-redux": "^9.2.0"
   },
   "peerDependencies": {
     "@ant-design/icons": "^6.0.1",
     "antd": "^5.27.3",
-    "axios": "^1.6.7",
-    "dayjs": "^1.11.10",
+    "axios": "^1.11.0",
+    "dayjs": "^1.11.18",
     "lodash": "^4.17.21",
     "react": "^19.1.1",
-    "react-redux": "^9.1.0",
-    "react-router-dom": "5.3.4"
+    "react-redux": "^9.2.0",
+    "react-router-dom": "7.8.2"
   },
   "dependencies": {
     "react-idle-timer": "^5.7.2",
-    "react-inlinesvg": "^4.1.1"
+    "react-inlinesvg": "^4.2.0"
   }
 }
