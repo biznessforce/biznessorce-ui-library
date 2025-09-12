@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.38](https://github.com///compare/v0.0.37...v0.0.38) (2025-09-12)
+
+
+### Bug Fixes
+
+* update devDependencies to latest versions for improved compatibility ([f485c3b](https://github.com///commit/f485c3baeaefbc7826e1eff9e0711bb0ba0cbaad))
+* update devDependencies to latest versions for improved compatibility ([c3435c7](https://github.com///commit/c3435c75d55d263bb5081b4b451723f6afa390bb))
+
 ### [0.0.37](https://github.com///compare/v0.0.36...v0.0.37) (2025-09-11)
 
 ### [0.0.36](https://github.com///compare/v0.0.35...v0.0.36) (2025-09-11)
