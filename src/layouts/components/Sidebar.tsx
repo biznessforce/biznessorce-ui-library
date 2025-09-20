@@ -2,7 +2,7 @@ import { hasPermissions } from "../../common";
 import { Image, Layout, Menu } from "antd";
 import { isBoolean, omit } from "lodash";
 // import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 
 const { Sider } = Layout;
@@ -35,11 +35,22 @@ const getItems = (
   return Object.values(SidebarMenus).flatMap((menu) => {
     if (
       Array.isArray(menu.permission) &&
-      hasPermissions(menu.permission, accPermission, SUPER_ADMIN)
+      hasPermissions(
+        menu.permission,
+        accPermission,
+        SUPER_ADMIN
+      )
     ) {
-      return [omit(menu, ["permission"])] as OmittedPermissionSidebarMenu[];
-    } else if (isBoolean(menu.permission) && menu.permission) {
-      return [omit(menu, ["permission"])] as OmittedPermissionSidebarMenu[];
+      return [
+        omit(menu, ["permission"]),
+      ] as OmittedPermissionSidebarMenu[];
+    } else if (
+      isBoolean(menu.permission) &&
+      menu.permission
+    ) {
+      return [
+        omit(menu, ["permission"]),
+      ] as OmittedPermissionSidebarMenu[];
     } else {
       return [] as OmittedPermissionSidebarMenu[];
     }
@@ -61,8 +72,9 @@ export function Sidebar({
   SUPER_ADMIN,
   logo,
 }: SidebarProps) {
-  const history = useHistory();
-  const [selectedMenu, setSelectedMenu] = React.useState<string>("dashboard");
+  const history = useNavigate();
+  const [selectedMenu, setSelectedMenu] =
+    React.useState<string>("dashboard");
 
   useEffect(() => {
     const path = window.location.pathname.split("/");
@@ -81,13 +93,20 @@ export function Sidebar({
         left: 0,
         top: 0,
         bottom: 0,
-      }}
-    >
+      }}>
       <div
         className="demo-logo-vertical d-flex justify-content-center align-items-center"
-        style={{ height: "64px", background: logoBgColor || "#002140" }}
-      >
-        {logo && <Image src={logo} alt="logo" preview={false} />}
+        style={{
+          height: "64px",
+          background: logoBgColor || "#002140",
+        }}>
+        {logo && (
+          <Image
+            src={logo}
+            alt="logo"
+            preview={false}
+          />
+        )}
       </div>
       <Menu
         theme="dark"
