@@ -1,8 +1,14 @@
 import { constructErrorMessage } from "../../common";
-import { Button, Form, Input, MenuProps, Modal } from "antd";
+import {
+  Button,
+  Form,
+  Input,
+  MenuProps,
+  Modal,
+} from "antd";
 import { trim } from "lodash";
 import { createContext, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AxiosPromise } from "axios";
 import React from "react";
 import { useAPI } from "../useAPI";
@@ -25,11 +31,11 @@ export const UserDropdownProvider = ({
   disableChangePassword,
   changePasswordAPI,
 }: DropdownProviderProps) => {
-  const history = useHistory();
-  const location = useLocation();
+  const history = useNavigate();
   const [form] = Form.useForm();
 
-  const [showPasswordChange, setShowPasswordChange] = useState(false);
+  const [showPasswordChange, setShowPasswordChange] =
+    useState(false);
 
   function handleClose() {
     setShowPasswordChange(false);
@@ -46,9 +52,16 @@ export const UserDropdownProvider = ({
   } = useAPI(
     changePasswordAPI,
     () => {
-      setStatus({ type: "success", msg: "Change password completed" });
+      setStatus({
+        type: "success",
+        msg: "Change password completed",
+      });
     },
-    (e: any) => setStatus({ type: "error", msg: constructErrorMessage(e) })
+    (e: any) =>
+      setStatus({
+        type: "error",
+        msg: constructErrorMessage(e),
+      })
   );
 
   const handleSubmit = () => {
@@ -71,7 +84,12 @@ export const UserDropdownProvider = ({
       onClick: () => setShowPasswordChange(true),
       disabled: disableChangePassword,
     },
-    { key: "2", danger: true, label: "Sign Out", onClick: onSignOut },
+    {
+      key: "2",
+      danger: true,
+      label: "Sign Out",
+      onClick: onSignOut,
+    },
   ];
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -98,54 +116,67 @@ export const UserDropdownProvider = ({
               htmlType="submit"
               type="primary"
               disabled={submitted}
-              onClick={handleSubmit}
-            >
+              onClick={handleSubmit}>
               {loading && (
-                <span className={"fa fa-spinner fa-spin font-size-sm"} />
+                <span
+                  className={
+                    "fa fa-spinner fa-spin font-size-sm"
+                  }
+                />
               )}
               Submit
             </Button>
           </>
-        }
-      >
-        <Form layout="vertical" form={form}>
+        }>
+        <Form
+          layout="vertical"
+          form={form}>
           {status && (
             <div
-              className={`mb-5 alert alert-${status?.type} alert-dismissible`}
-            >
-              <div className={"alert-text font-weight-bold"}>{status?.msg}</div>
+              className={`mb-5 alert alert-${status?.type} alert-dismissible`}>
+              <div
+                className={"alert-text font-weight-bold"}>
+                {status?.msg}
+              </div>
             </div>
           )}
           <Form.Item
             name="currentPassword"
             label="Current Password"
             rules={[
-              { required: true, message: "Current Password is required" },
+              {
+                required: true,
+                message: "Current Password is required",
+              },
             ]}
-            hasFeedback
-          >
+            hasFeedback>
             <Input.Password />
           </Form.Item>
           <Form.Item
             name="newPassword"
             label="New Password"
             rules={[
-              { required: true, message: "Please Input Your Password" },
+              {
+                required: true,
+                message: "Please Input Your Password",
+              },
               {
                 min: 7,
-                message: "Password must be at least 7 characters",
+                message:
+                  "Password must be at least 7 characters",
               },
               {
                 pattern: /(?=.*[A-Z])/,
-                message: "Password must contain at least one uppercase letter",
+                message:
+                  "Password must contain at least one uppercase letter",
               },
               {
                 pattern: /(?=.*\d)/,
-                message: "Password must contain at least one numeric digit",
+                message:
+                  "Password must contain at least one numeric digit",
               },
             ]}
-            hasFeedback
-          >
+            hasFeedback>
             <Input.Password />
           </Form.Item>
 
@@ -155,10 +186,16 @@ export const UserDropdownProvider = ({
             dependencies={["newPassword"]}
             hasFeedback
             rules={[
-              { required: true, message: "Please confirm your password" },
+              {
+                required: true,
+                message: "Please confirm your password",
+              },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue("newPassword") === value) {
+                  if (
+                    !value ||
+                    getFieldValue("newPassword") === value
+                  ) {
                     return Promise.resolve();
                   }
                   return Promise.reject(
@@ -168,8 +205,7 @@ export const UserDropdownProvider = ({
                   );
                 },
               }),
-            ]}
-          >
+            ]}>
             <Input.Password />
           </Form.Item>
         </Form>
