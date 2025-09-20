@@ -1,7 +1,8 @@
 {
   "name": "@biznessforce/ui-lib",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "description": "This is test button made for a tutorial",
+  "license": "MIT",
   "main": "dist/cjs/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -26,13 +27,14 @@
     "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^12.1.4",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/lodash": "^4.17.20",
     "@types/node": "^24.3.1",
-    "@types/react": "^19.1.12",
-    "@types/react-router-dom": "^5.3.3",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
     "antd": "^5.27.3",
-    "react": "^19.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "rollup": "^4.50.1",
     "rollup-plugin-dts": "^6.2.3",
     "rollup-plugin-image": "^1.0.2",
@@ -43,7 +45,8 @@
     "tslib": "^2.8.1",
     "typescript": "^5.9.2",
     "axios": "^1.11.0",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.30.1"
   },
   "peerDependencies": {
     "@ant-design/icons": "^6.0.1",
@@ -52,6 +55,7 @@
     "dayjs": "^1.11.18",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.30.1"
   },

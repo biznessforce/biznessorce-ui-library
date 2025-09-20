@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.39](https://github.com///compare/v0.0.38...v0.0.39) (2025-09-20)
+
+
+### Bug Fixes
+
+* update react-router-dom version to ^6.30.1 ([c256373](https://github.com///commit/c256373b7a44faf61a8203c4e992f60bcc7dcca7))
+
 ### [0.0.38](https://github.com///compare/v0.0.37...v0.0.38) (2025-09-12)
 
 
