@@ -1,6 +1,6 @@
-import { Layout as AntLayout } from 'antd';
-import React from 'react';
-import Sidebar, { SidebarProps } from './Sidebar';
+import { Layout as AntLayout } from "antd";
+import React, { JSX } from "react";
+import Sidebar, { SidebarProps } from "./Sidebar";
 
 type LayoutProps = React.FC & {
   sidebarProps: SidebarProps;
@@ -9,7 +9,7 @@ type LayoutProps = React.FC & {
 
 export function Layout({ children, sidebarProps }: LayoutProps) {
   return (
-    <AntLayout style={{ minHeight: '100vh' }}>
+    <AntLayout style={{ minHeight: "100vh" }}>
       <Sidebar {...sidebarProps} />
       {children}
       {/* <Ezdrawer /> */}

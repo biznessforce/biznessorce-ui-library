@@ -1,5 +1,5 @@
 import { Col, Divider, Flex, Form, Row, Space, Typography } from "antd";
-import React from "react";
+import React, { JSX } from "react";
 
 export const FormSectionHeader = ({
   title,

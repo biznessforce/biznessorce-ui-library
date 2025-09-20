@@ -23,7 +23,12 @@ export default [
     ],
     plugins: [
       // NEW
-      typescript({ sourceMap: true, inlineSources: true }),
+      typescript({
+        declaration: true,
+        declarationDir: "types",
+        sourceMap: true,
+        inlineSources: true,
+      }),
       peerDepsExternal(),
       image(),
       sourcemaps(),

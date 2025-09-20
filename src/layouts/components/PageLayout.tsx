@@ -1,5 +1,5 @@
 import { Layout as AntLayout } from "antd";
-import React from "react";
+import React, { JSX } from "react";
 import Footer, { FooterProps } from "./Footer";
 import Header, { HeaderProps } from "./Header";
 import Subheader, { SubheaderProps } from "./Subheader";

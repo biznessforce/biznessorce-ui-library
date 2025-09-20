@@ -1,16 +1,9 @@
-import { constructErrorMessage } from "../../common";
-import {
-  Button,
-  Form,
-  Input,
-  MenuProps,
-  Modal,
-} from "antd";
-import { trim } from "lodash";
-import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Button, Form, Input, MenuProps, Modal } from "antd";
 import { AxiosPromise } from "axios";
-import React from "react";
+import { trim } from "lodash";
+import React, { createContext, JSX, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { constructErrorMessage } from "../../common";
 import { useAPI } from "../useAPI";
 
 export const UserDropdownContext = createContext({
@@ -31,11 +24,10 @@ export const UserDropdownProvider = ({
   disableChangePassword,
   changePasswordAPI,
 }: DropdownProviderProps) => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [form] = Form.useForm();
 
-  const [showPasswordChange, setShowPasswordChange] =
-    useState(false);
+  const [showPasswordChange, setShowPasswordChange] = useState(false);
 
   function handleClose() {
     setShowPasswordChange(false);
@@ -73,7 +65,7 @@ export const UserDropdownProvider = ({
   };
 
   const onSignOut = () => {
-    history.push(`/logout?redirect=${location.pathname}`);
+    navigate(`/logout?redirect=${location.pathname}`);
   };
 
   const items: MenuProps["items"] = [
@@ -116,28 +108,22 @@ export const UserDropdownProvider = ({
               htmlType="submit"
               type="primary"
               disabled={submitted}
-              onClick={handleSubmit}>
+              onClick={handleSubmit}
+            >
               {loading && (
-                <span
-                  className={
-                    "fa fa-spinner fa-spin font-size-sm"
-                  }
-                />
+                <span className={"fa fa-spinner fa-spin font-size-sm"} />
               )}
               Submit
             </Button>
           </>
-        }>
-        <Form
-          layout="vertical"
-          form={form}>
+        }
+      >
+        <Form layout="vertical" form={form}>
           {status && (
             <div
-              className={`mb-5 alert alert-${status?.type} alert-dismissible`}>
-              <div
-                className={"alert-text font-weight-bold"}>
-                {status?.msg}
-              </div>
+              className={`mb-5 alert alert-${status?.type} alert-dismissible`}
+            >
+              <div className={"alert-text font-weight-bold"}>{status?.msg}</div>
             </div>
           )}
           <Form.Item
@@ -149,7 +135,8 @@ export const UserDropdownProvider = ({
                 message: "Current Password is required",
               },
             ]}
-            hasFeedback>
+            hasFeedback
+          >
             <Input.Password />
           </Form.Item>
           <Form.Item
@@ -162,21 +149,19 @@ export const UserDropdownProvider = ({
               },
               {
                 min: 7,
-                message:
-                  "Password must be at least 7 characters",
+                message: "Password must be at least 7 characters",
               },
               {
                 pattern: /(?=.*[A-Z])/,
-                message:
-                  "Password must contain at least one uppercase letter",
+                message: "Password must contain at least one uppercase letter",
               },
               {
                 pattern: /(?=.*\d)/,
-                message:
-                  "Password must contain at least one numeric digit",
+                message: "Password must contain at least one numeric digit",
               },
             ]}
-            hasFeedback>
+            hasFeedback
+          >
             <Input.Password />
           </Form.Item>
 
@@ -192,10 +177,7 @@ export const UserDropdownProvider = ({
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (
-                    !value ||
-                    getFieldValue("newPassword") === value
-                  ) {
+                  if (!value || getFieldValue("newPassword") === value) {
                     return Promise.resolve();
                   }
                   return Promise.reject(
@@ -205,7 +187,8 @@ export const UserDropdownProvider = ({
                   );
                 },
               }),
-            ]}>
+            ]}
+          >
             <Input.Password />
           </Form.Item>
         </Form>
