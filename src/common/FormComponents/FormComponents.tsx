@@ -1,4 +1,12 @@
-import { Col, Divider, Flex, Form, Row, Space, Typography } from "antd";
+import {
+  Col,
+  Divider,
+  Flex,
+  Form,
+  Row,
+  Space,
+  Typography,
+} from "antd";
 import React, { JSX } from "react";
 
 export const FormSectionHeader = ({
@@ -8,11 +16,15 @@ export const FormSectionHeader = ({
   rightAction,
 }: any) => {
   return (
-    <Flex justify="space-between" className="w-100">
+    <Flex
+      justify="space-between"
+      className="w-100">
       <Space size={"middle"}>
         {titleComponent ? titleComponent : <></>}
         {title && (
-          <Typography.Title level={5} className="mb-0">
+          <Typography.Title
+            level={5}
+            className="mb-0">
             {title}
           </Typography.Title>
         )}
@@ -32,7 +44,11 @@ export const FormVerColAlign = ({
 }: any) => {
   return (
     <Col span={span}>
-      <Form.Item label={label} name={name} className="mb-0" {...formItemProps}>
+      {label}
+      <Form.Item
+        name={"name"}
+        className="mt-1 mb-0"
+        {...formItemProps}>
         {formElement}
       </Form.Item>
     </Col>
@@ -43,17 +59,23 @@ export const FormHorColAlign = ({
   name,
   label,
   formElement,
+  formItemProps,
   span = 12,
   elementSpan = 15,
 }: any) => {
   const labelSpan = 24 - elementSpan - 1;
   return (
-    <Col span={span} className="mb-3">
+    <Col
+      span={span}
+      className="mb-3">
       <Row className="d-flex align-items-center">
         <Col span={labelSpan}>{label}</Col>
         <Col span={1}>:</Col>
         <Col span={elementSpan}>
-          <Form.Item name={name} className="mb-0">
+          <Form.Item
+            name={name}
+            className="mb-0"
+            {...formItemProps}>
             {formElement}
           </Form.Item>
         </Col>
@@ -71,7 +93,9 @@ export const FormHorColView = ({
 }: any) => {
   const labelSpan = 24 - elementSpan - 1;
   return (
-    <Col span={span} className={colClassName}>
+    <Col
+      span={span}
+      className={colClassName}>
       <Row className="d-flex align-items-center">
         <Col span={labelSpan}>{label}</Col>
         <Col span={1}>:</Col>
@@ -99,7 +123,9 @@ export function FormColField({
   flex?: boolean;
 }) {
   return (
-    <Col span={span} className="px-2 py-0">
+    <Col
+      span={span}
+      className="px-2 py-0">
       <div>
         {label && (
           <Typography.Text className="col text-left p-1 text-muted">
@@ -113,8 +139,7 @@ export function FormColField({
             className={`col text-left p-1 font-weight-bold ${
               !textColor && "text-dark"
             } `}
-            style={{ color: textColor && textColor }}
-          >
+            style={{ color: textColor && textColor }}>
             {value}
           </Typography.Text>
         ) : (
