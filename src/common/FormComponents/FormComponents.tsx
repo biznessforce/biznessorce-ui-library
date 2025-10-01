@@ -47,7 +47,6 @@ export const FormVerColAlign = ({
       {label}
       <Form.Item
         name={name}
-        label={label}
         className="mt-1 mb-0"
         {...formItemProps}>
         {formElement}
