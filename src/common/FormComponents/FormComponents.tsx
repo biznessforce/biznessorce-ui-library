@@ -39,7 +39,7 @@ export const FormVerColAlign = ({
   name,
   label,
   formElement,
-  formItemProps,
+  formItemProps = {},
   span = 12,
 }: any) => {
   return (
@@ -60,7 +60,7 @@ export const FormHorColAlign = ({
   name,
   label,
   formElement,
-  formItemProps,
+  formItemProps = {},
   span = 12,
   elementSpan = 15,
 }: any) => {
