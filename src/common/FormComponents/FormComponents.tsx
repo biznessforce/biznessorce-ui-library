@@ -39,14 +39,14 @@ export const FormVerColAlign = ({
   name,
   label,
   formElement,
-  formItemProps,
+  formItemProps = {},
   span = 12,
 }: any) => {
   return (
     <Col span={span}>
       {label}
       <Form.Item
-        name={"name"}
+        name={name}
         className="mt-1 mb-0"
         {...formItemProps}>
         {formElement}
@@ -59,7 +59,7 @@ export const FormHorColAlign = ({
   name,
   label,
   formElement,
-  formItemProps,
+  formItemProps = {},
   span = 12,
   elementSpan = 15,
 }: any) => {
