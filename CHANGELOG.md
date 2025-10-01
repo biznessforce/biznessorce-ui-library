@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.42](https://github.com///compare/v0.0.41...v0.0.42) (2025-10-01)
+
+
+### Bug Fixes
+
+* correct name and label props in FormVerColAlign component ([4c4264a](https://github.com///commit/4c4264a67847559a11d675c5d58fe41f52aea66d))
+* remove redundant label prop from FormVerColAlign component ([ca735fc](https://github.com///commit/ca735fc97c378c388bc0d20b2e15a59176436c46))
+* set default value for formItemProps in FormVerColAlign and FormHorColAlign components ([85afe68](https://github.com///commit/85afe6874f6223da8592b09cef01ab2d57a30742))
+
 ### [0.0.41](https://github.com///compare/v0.0.40...v0.0.41) (2025-09-30)
 
 ### [0.0.40](https://github.com///compare/v0.0.39...v0.0.40) (2025-09-20)
