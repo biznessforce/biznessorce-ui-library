@@ -67,7 +67,7 @@ export const FormHorColAlign = ({
   return (
     <Col
       span={span}
-      className="mb-3">
+      className="mb-2">
       <Row className="d-flex align-items-center">
         <Col span={labelSpan}>{label}</Col>
         <Col span={1}>:</Col>
@@ -86,7 +86,7 @@ export const FormHorColAlign = ({
 
 export const FormHorColView = ({
   label,
-  colClassName = "mb-3",
+  colClassName = "mb-2",
   valueElement,
   span = 12,
   elementSpan = 15,
