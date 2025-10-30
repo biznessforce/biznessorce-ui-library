@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.44](https://github.com///compare/v0.0.42...v0.0.44) (2025-10-30)
+
+
+### Bug Fixes
+
+* update date format in Footer component and improve code formatting ([b8e8369](https://github.com///commit/b8e8369bbe6b6c129dd7124e4ba35bced934b2aa))
+* update margin classes in FormHorColAlign and FormHorColView components ([9cf79c7](https://github.com///commit/9cf79c7eea4c34aaa8ffd1d0fd587a74064fe1a1))
+
 ### [0.0.43](https://github.com///compare/v0.0.42...v0.0.43) (2025-10-30)
 
 
