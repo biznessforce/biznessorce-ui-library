@@ -27,7 +27,7 @@ export const firstLettersPipe = (word: string) => {
 
 export const formatDate = (
   date: Dayjs | Date | string,
-  format = "DD-MM-YYYY"
+  format = "DD-MMM-YYYY"
 ) => {
   return date ? dayjs(date).format(format) : "";
 };

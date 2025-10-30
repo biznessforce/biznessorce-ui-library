@@ -34,7 +34,7 @@ export function Footer({ version, buildStamp, rightTools = [] }: FooterProps) {
         </Typography.Link>
 
         <Typography.Text type="secondary" style={customFontSize}>
-          - v{version} -{formatDate(buildStamp, "DD-MM-YYYY hh:mm")}
+          - v{version} -{formatDate(buildStamp, "DD-MMM-YYYY HH:mm")}
         </Typography.Text>
       </Flex>
 
