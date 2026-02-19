@@ -26,7 +26,7 @@ const InfoFooter = ({ info_1, info_2 }: InfoFooterProps) => {
           <Typography.Text strong>{info_1.userBy}</Typography.Text>
           {info_1.date && (
             <Typography.Text strong>
-              on {info_1.date.format("DD-MMM-YYYY, h:mm a")}
+              on {info_1.date.format("DD-MMM-YYYY, HH:mm")}
             </Typography.Text>
           )}
         </Space>
