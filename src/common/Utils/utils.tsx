@@ -44,7 +44,8 @@ export const getFlagEmoji = (countryCode: string) => {
 export const constructErrorMessage = (
   error?: { response: { data: any } } | any
 ): string => {
-  const message = "please try again later or contact administrator";
+  const message =
+    "please try again later or contact administrator";
 
   if (error?.response?.status === 503) {
     return `Service not available, ${message}`;
@@ -54,21 +55,28 @@ export const constructErrorMessage = (
   }
   if (error?.response?.data)
     return `${error.response.data.status} - ${
-      error.response.data.message || error.response.data.statusMessage
+      error.response.data.message ||
+      error.response.data.statusMessage
     }`;
   return `Error processing request, ${message}`;
 };
 
 // Converting Mins to Hours
-export const convertMinstoHrs = (mins: number | undefined): string => {
+export const convertMinstoHrs = (
+  mins: number | undefined
+): string => {
   if (!mins) return "0:00";
   /**
    * 405 / 60 = 6.75 => 6: 0.75*60 => 6h:45m
    */
   const [hour, min] = (mins / 60).toFixed(2).split(".");
-  const updatedHour = `${(parseInt(min) * 60).toString().slice(0, 2)}`;
+  const updatedHour = `${(parseInt(min) * 60)
+    .toString()
+    .slice(0, 2)}`;
   return `${hour}:${
-    updatedHour.length === 1 ? `${updatedHour}0` : updatedHour
+    updatedHour.length === 1
+      ? `${updatedHour}0`
+      : updatedHour
   }`;
 };
 
@@ -78,7 +86,10 @@ export const dataURItoBlob = (dataURI: string) => {
   const byteString = atob(dataURI.split(",")[1]);
 
   // separate out the mime component
-  const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+  const mimeString = dataURI
+    .split(",")[0]
+    .split(":")[1]
+    .split(";")[0];
 
   // write the bytes of the string to an ArrayBuffer
   const ab = new ArrayBuffer(byteString.length);
@@ -157,9 +168,15 @@ export const getGreetingTime = (m: Dayjs) => {
   const split_night = 17; //24hr time to split the evening
   const currentHour = parseFloat(m.format("HH"));
 
-  if (currentHour >= split_afternoon && currentHour <= split_evening) {
+  if (
+    currentHour >= split_afternoon &&
+    currentHour <= split_evening
+  ) {
     g = DAY_TIMING.AFTERNOON;
-  } else if (currentHour >= split_evening && currentHour <= split_night) {
+  } else if (
+    currentHour >= split_evening &&
+    currentHour <= split_night
+  ) {
     g = DAY_TIMING.EVENING;
   } else if (currentHour >= split_night) {
     g = DAY_TIMING.NIGHT;
@@ -171,7 +188,9 @@ export const getGreetingTime = (m: Dayjs) => {
 };
 
 export const getIcon = (shiftTime: string) => {
-  const greetings = getGreetingTime(dayjs(shiftTime?.split(" ")[0], "ha"));
+  const greetings = getGreetingTime(
+    dayjs(shiftTime?.split(" ")[0], "ha")
+  );
   if (greetings === DAY_TIMING.MORNING) {
     return " ";
   }
@@ -189,11 +208,14 @@ export const getIcon = (shiftTime: string) => {
 export const uuidv4 = () => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-    (
-      c ^
-      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-    ).toString(16)
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(
+    /[018]/g,
+    (c) =>
+      (
+        c ^
+        (crypto.getRandomValues(new Uint8Array(1))[0] &
+          (15 >> (c / 4)))
+      ).toString(16)
   );
 };
 

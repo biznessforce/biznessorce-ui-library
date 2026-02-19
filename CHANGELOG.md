@@ -2,6 +2,67 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.44](https://github.com///compare/v0.0.42...v0.0.44) (2025-10-30)
+
+
+### Bug Fixes
+
+* update date format in Footer component and improve code formatting ([b8e8369](https://github.com///commit/b8e8369bbe6b6c129dd7124e4ba35bced934b2aa))
+* update margin classes in FormHorColAlign and FormHorColView components ([9cf79c7](https://github.com///commit/9cf79c7eea4c34aaa8ffd1d0fd587a74064fe1a1))
+
+### [0.0.43](https://github.com///compare/v0.0.42...v0.0.43) (2025-10-30)
+
+
+### Bug Fixes
+
+* update date format in Footer component and improve code formatting ([b8e8369](https://github.com///commit/b8e8369bbe6b6c129dd7124e4ba35bced934b2aa))
+* update margin classes in FormHorColAlign and FormHorColView components ([9cf79c7](https://github.com///commit/9cf79c7eea4c34aaa8ffd1d0fd587a74064fe1a1))
+
+### [0.0.42](https://github.com///compare/v0.0.41...v0.0.42) (2025-10-01)
+
+
+### Bug Fixes
+
+* correct name and label props in FormVerColAlign component ([4c4264a](https://github.com///commit/4c4264a67847559a11d675c5d58fe41f52aea66d))
+* remove redundant label prop from FormVerColAlign component ([ca735fc](https://github.com///commit/ca735fc97c378c388bc0d20b2e15a59176436c46))
+* set default value for formItemProps in FormVerColAlign and FormHorColAlign components ([85afe68](https://github.com///commit/85afe6874f6223da8592b09cef01ab2d57a30742))
+
+### [0.0.41](https://github.com///compare/v0.0.40...v0.0.41) (2025-09-30)
+
+### [0.0.40](https://github.com///compare/v0.0.39...v0.0.40) (2025-09-20)
+
+### [0.0.39](https://github.com///compare/v0.0.38...v0.0.39) (2025-09-20)
+
+
+### Bug Fixes
+
+* update react-router-dom version to ^6.30.1 ([c256373](https://github.com///commit/c256373b7a44faf61a8203c4e992f60bcc7dcca7))
+
+### [0.0.38](https://github.com///compare/v0.0.37...v0.0.38) (2025-09-12)
+
+
+### Bug Fixes
+
+* update devDependencies to latest versions for improved compatibility ([f485c3b](https://github.com///commit/f485c3baeaefbc7826e1eff9e0711bb0ba0cbaad))
+* update devDependencies to latest versions for improved compatibility ([c3435c7](https://github.com///commit/c3435c75d55d263bb5081b4b451723f6afa390bb))
+
+### [0.0.37](https://github.com///compare/v0.0.36...v0.0.37) (2025-09-11)
+
+### [0.0.36](https://github.com///compare/v0.0.35...v0.0.36) (2025-09-11)
+
+
+### Bug Fixes
+
+* update peerDependencies for @ant-design/icons, antd, and react ([4eaaae1](https://github.com///commit/4eaaae1f5b12e95a9e1c30123f745f7e07b05842))
+* use local node_modules binaries and update dependencies for ui-lib package ([291fb45](https://github.com///commit/291fb45756c12468fdae0e4907615f475bfeb82c))
+
+### [0.0.35](https://github.com///compare/v0.0.34...v0.0.35) (2024-10-18)
+
+
+### Features
+
+* :sparkles: Added disabling change password functionality ([a70426e](https://github.com///commit/a70426ecc6034d39a8e969a5540a959be55e15e2))
+
 ### [0.0.34](https://github.com///compare/v0.0.33...v0.0.34) (2024-03-26)
 
 ### [0.0.33](https://github.com///compare/v0.0.32...v0.0.33) (2024-03-26)

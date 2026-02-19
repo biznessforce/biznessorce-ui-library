@@ -1,11 +1,9 @@
-import { constructErrorMessage } from "../../common";
-
-import { Button, Form, Input, Modal } from "antd";
-import { trim } from "lodash";
-import { createContext, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { Button, Form, Input, MenuProps, Modal } from "antd";
 import { AxiosPromise } from "axios";
-import React from "react";
+import { trim } from "lodash";
+import React, { createContext, JSX, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { constructErrorMessage } from "../../common";
 import { useAPI } from "../useAPI";
 
 export const UserDropdownContext = createContext({
@@ -16,16 +14,17 @@ export const UserDropdownContext = createContext({
 type DropdownProviderProps = {
   children: JSX.Element;
   account: { fullName: string; accountId: string };
+  disableChangePassword: boolean;
   changePasswordAPI: () => AxiosPromise;
 };
 
 export const UserDropdownProvider = ({
   children,
   account,
+  disableChangePassword,
   changePasswordAPI,
 }: DropdownProviderProps) => {
-  const history = useHistory();
-  const location = useLocation();
+  const navigate = useNavigate();
   const [form] = Form.useForm();
 
   const [showPasswordChange, setShowPasswordChange] = useState(false);
@@ -45,9 +44,16 @@ export const UserDropdownProvider = ({
   } = useAPI(
     changePasswordAPI,
     () => {
-      setStatus({ type: "success", msg: "Change password completed" });
+      setStatus({
+        type: "success",
+        msg: "Change password completed",
+      });
     },
-    (e: any) => setStatus({ type: "error", msg: constructErrorMessage(e) })
+    (e: any) =>
+      setStatus({
+        type: "error",
+        msg: constructErrorMessage(e),
+      })
   );
 
   const handleSubmit = () => {
@@ -59,17 +65,23 @@ export const UserDropdownProvider = ({
   };
 
   const onSignOut = () => {
-    history.push(`/logout?redirect=${location.pathname}`);
+    navigate(`/logout?redirect=${location.pathname}`);
   };
 
-  const items = [
+  const items: MenuProps["items"] = [
     { key: "0", label: "My Profile" },
     {
       key: "1",
       label: "Change Password",
       onClick: () => setShowPasswordChange(true),
+      disabled: disableChangePassword,
     },
-    { key: "2", danger: true, label: "Sign Out", onClick: onSignOut },
+    {
+      key: "2",
+      danger: true,
+      label: "Sign Out",
+      onClick: onSignOut,
+    },
   ];
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -118,7 +130,10 @@ export const UserDropdownProvider = ({
             name="currentPassword"
             label="Current Password"
             rules={[
-              { required: true, message: "Current Password is required" },
+              {
+                required: true,
+                message: "Current Password is required",
+              },
             ]}
             hasFeedback
           >
@@ -128,7 +143,10 @@ export const UserDropdownProvider = ({
             name="newPassword"
             label="New Password"
             rules={[
-              { required: true, message: "Please Input Your Password" },
+              {
+                required: true,
+                message: "Please Input Your Password",
+              },
               {
                 min: 7,
                 message: "Password must be at least 7 characters",
@@ -153,7 +171,10 @@ export const UserDropdownProvider = ({
             dependencies={["newPassword"]}
             hasFeedback
             rules={[
-              { required: true, message: "Please confirm your password" },
+              {
+                required: true,
+                message: "Please confirm your password",
+              },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue("newPassword") === value) {

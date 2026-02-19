@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, JSX, useEffect, useState } from "react";
 
 export const SplashScreenContext = createContext({});
 
@@ -7,14 +7,14 @@ export function SplashScreenProvider({ children }: { children: JSX.Element }) {
   const visible = count > 0;
 
   useEffect(() => {
-    const splashScreen = document.getElementById('splash-screen');
+    const splashScreen = document.getElementById("splash-screen");
 
     // Show SplashScreen
     if (splashScreen && visible) {
-      splashScreen.classList.remove('hidden');
+      splashScreen.classList.remove("hidden");
 
       return () => {
-        splashScreen.classList.add('hidden');
+        splashScreen.classList.add("hidden");
       };
     }
 
@@ -22,7 +22,7 @@ export function SplashScreenProvider({ children }: { children: JSX.Element }) {
     let timeout: NodeJS.Timeout;
     if (splashScreen && !visible) {
       timeout = setTimeout(() => {
-        splashScreen.classList.add('hidden');
+        splashScreen.classList.add("hidden");
       }, 500);
     }
 
