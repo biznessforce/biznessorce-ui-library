@@ -31,10 +31,10 @@ jobs:
           cache: "yarn"
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       - name: Build Storybook
-        run: npm run build-storybook
+        run: yarn build-storybook
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
 
