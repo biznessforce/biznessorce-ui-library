@@ -2,7 +2,7 @@ import { hasPermissions } from "../../common";
 import { Image, Layout, Menu } from "antd";
 import { isBoolean, omit } from "lodash";
 // import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import React, { JSX, useEffect } from "react";
 
 const { Sider } = Layout;
@@ -30,7 +30,7 @@ type ReturnTypeGetItems = OmittedPermissionSidebarMenu[];
 const getItems = (
   accPermission: string[],
   SidebarMenus: SidebarMenuProps,
-  SUPER_ADMIN: string | null
+  SUPER_ADMIN: string | null,
 ): ReturnTypeGetItems => {
   return Object.values(SidebarMenus).flatMap((menu) => {
     if (
@@ -61,13 +61,13 @@ export function Sidebar({
   SUPER_ADMIN,
   logo,
 }: SidebarProps) {
-  const navigate = useNavigate();
+  const history = useHistory();
   const [selectedMenu, setSelectedMenu] = React.useState<string>("dashboard");
 
   useEffect(() => {
     const path = window.location.pathname.split("/");
     setSelectedMenu(path[1]);
-  }, [navigate]);
+  }, [history.location.pathname]);
 
   return (
     <Sider
@@ -98,7 +98,7 @@ export function Sidebar({
         selectedKeys={[selectedMenu]}
         onSelect={({ key }) => {
           setSelectedMenu(key);
-          navigate(`/${key}`);
+          history.push(`/${key}`);
         }}
         mode="inline"
         items={getItems(authorities, menus, SUPER_ADMIN)}

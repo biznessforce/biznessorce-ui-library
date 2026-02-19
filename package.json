@@ -18,9 +18,9 @@
     "release": "./node_modules/.bin/standard-version --release-as patch",
     "build": "./node_modules/.bin/rollup -c --bundleConfigAsCjs",
     "push": "npm run release && npm run build && npm publish",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "deploy-storybook": "storybook build -o storybook-static"
+    "storybook": "./node_modules/.bin/storybook dev -p 6006",
+    "build-storybook": "./node_modules/.bin/storybook build",
+    "deploy-storybook": "./node_modules/.bin/storybook build -o storybook-static"
   },
   "author": "@ikismail",
   "type": "module",
@@ -33,6 +33,9 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@storybook/addon-a11y": "^10.2.9",
     "@storybook/addon-docs": "^10.2.9",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-interactions": "^8.6.14",
+    "@storybook/addon-links": "^10.2.10",
     "@storybook/addon-onboarding": "^10.2.9",
     "@storybook/addon-vitest": "^10.2.9",
     "@storybook/react-vite": "^10.2.9",
