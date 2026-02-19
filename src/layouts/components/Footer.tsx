@@ -10,11 +10,7 @@ export type FooterProps = {
   rightTools?: { link: string; label: string }[];
 };
 
-export function Footer({
-  version,
-  buildStamp,
-  rightTools = [],
-}: FooterProps) {
+export function Footer({ version, buildStamp, rightTools = [] }: FooterProps) {
   const today = new Date().getFullYear();
 
   const customFontSize = {
@@ -24,9 +20,7 @@ export function Footer({
   return (
     <AntFooter className="bg-white d-flex justify-content-between border px-3 py-1">
       <Flex gap={"small"}>
-        <Typography.Text
-          type="secondary"
-          style={customFontSize}>
+        <Typography.Text type="secondary" style={customFontSize}>
           &copy; {today.toString()}
         </Typography.Text>
 
@@ -34,15 +28,13 @@ export function Footer({
           className=""
           href="https://biznessforce.com"
           target="_blank"
-          style={customFontSize}>
+          style={customFontSize}
+        >
           Biznessforce
         </Typography.Link>
 
-        <Typography.Text
-          type="secondary"
-          style={customFontSize}>
-          - v{version} -
-          {formatDate(buildStamp, "DD-MMM-YYYY HH:mm")}
+        <Typography.Text type="secondary" style={customFontSize}>
+          - v{version} -{formatDate(buildStamp, "DD-MMM-YYYY HH:mm")}
         </Typography.Text>
       </Flex>
 
@@ -52,7 +44,8 @@ export function Footer({
             key={tools.label}
             className=""
             href={tools.link}
-            style={customFontSize}>
+            style={customFontSize}
+          >
             {tools.label}
           </Typography.Link>
         ))}

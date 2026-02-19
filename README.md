@@ -1,416 +1,338 @@
 # @biznessforce/ui-lib
 
-Biznessforce’s shared React UI library built on Ant Design v5. It provides reusable UI components, layout primitives, hooks, and utilities used across Biznessforce web apps.
+A React + TypeScript UI component library built on Ant Design, providing reusable components, hooks, and utilities for building business applications.
 
-## Table of Contents
+[![Version](https://img.shields.io/badge/version-0.0.34--beta.2-blue.svg)](https://github.com/biznessforce/@biznessforce/ui-lib)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
+[![Ant Design](https://img.shields.io/badge/Ant%20Design-5.14.2-blue.svg)](https://ant.design/)
 
-- [Installation](#installation)
-- [Peer dependencies](#peer-dependencies)
-- [Quick start](#quick-start)
-- [Components](#components)
-- [Layouts](#layouts)
-- [Hooks](#hooks)
-- [Utilities](#utilities)
-- [Development](#development)
-- [Build](#build)
-- [Release and publish](#release-and-publish)
-- [FAQ](#faq)
-
-## Installation
-
-Install from GitHub Packages registry.
-
-1) Configure your project’s `.npmrc` to point `@biznessforce` scope to GitHub Packages (and authenticate):
-
-```ini
-@biznessforce:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
-```
-
-2) Install the package and required peers in your app:
+## 📦 Installation
 
 ```bash
-npm i @biznessforce/ui-lib react react-dom antd axios dayjs lodash react-router-dom react-redux
+npm install @biznessforce/ui-lib
 # or
-yarn add @biznessforce/ui-lib react react-dom antd axios dayjs lodash react-router-dom react-redux
+yarn add @biznessforce/ui-lib
 ```
 
-## Peer dependencies
+### Peer Dependencies
 
-This library expects the following packages to be present in the host app (see `package.json` peerDependencies):
+Ensure you have the following peer dependencies installed:
 
-- react ^18.3.1
-- react-dom ^18.3.1
-- antd ^5.27.3
-- @ant-design/icons ^6.0.1
-- axios ^1.11.0
-- dayjs ^1.11.18
-- lodash ^4.17.21
-- react-redux ^9.2.0
-- react-router-dom ^6.30.1
+```bash
+npm install react@^18.0.0 react-dom@^18.0.0 antd@^5.14.2 @ant-design/icons@^5.3.0 axios@^1.6.7 lodash@^4.17.21 react-redux@^9.1.0 react-router-dom@5.3.4 dayjs@^1.11.10
+```
 
-Note: React 18 is required. Ensure `react` and `react-dom` versions match 18.x to avoid peer warnings.
+## 🚀 Quick Start
 
-## Quick start
+```typescript
+import { Button, useAPI, Header, formatDate } from '@biznessforce/ui-lib';
+import { fetchUsers } from './services/api';
 
-Import what you need from the library’s root entry `src/index.ts`, which re-exports `common`, `layouts`, and `hooks`:
+function MyComponent() {
+  const { loading, onSubmit } = useAPI(fetchUsers, ({ resp }) => {
+    console.log('Users:', resp.data);
+  });
 
-```jsx
-import React from 'react';
-import {
-  Button,
-  GlobalErrorHandler,
-  NetworkDetector,
-  PageNotFound,
-  NoDataContainer,
-} from '@biznessforce/ui-lib';
-
-function App() {
   return (
-    <NetworkDetector>
-      <GlobalErrorHandler
-        globalError={{ type: 'success', msg: '' }}
-        updateGlobalError={() => {}}
-      >
-        <Button type="primary">Click Me</Button>
-      </GlobalErrorHandler>
-    </NetworkDetector>
+    <Button onClick={onSubmit} loading={loading}>
+      Fetch Users
+    </Button>
   );
 }
 ```
 
-## Components
+## 📚 Component Catalog
 
-All component exports live under `src/common/` and are re-exported by `src/common/index.ts`.
+### Common Components
 
-- **Button** (`common/Button/Button.tsx`)
-  - A light wrapper around AntD `Button` with the same `ButtonProps`.
-  - Usage:
-    ```tsx
-    import { Button } from '@biznessforce/ui-lib';
+| Component             | Description                                                    |
+| --------------------- | -------------------------------------------------------------- |
+| `Button`              | Wrapper around Ant Design Button with extended functionality   |
+| `ErrorBoundaries`     | React error boundary for graceful error handling               |
+| `FileUploadContainer` | File upload component with drag-and-drop support               |
+| `GlobalErrorHandler`  | Global error handling mechanism                                |
+| `HasPermission`       | Permission-based conditional rendering                         |
+| `EzIdleTimer`         | Idle timeout detection and handling                            |
+| `InfoFooter`          | Display creation/modification metadata with user and timestamp |
+| `NetworkDetector`     | Network connectivity status detection                          |
+| `NoDataContainer`     | Empty state component                                          |
+| `PageNotFound`        | 404 page component                                             |
+| `ProgressLine`        | Progress indicator component                                   |
 
-    <Button type="primary" loading={isLoading}>Save</Button>
-    ```
+### Form Components
 
-- **ErrorBoundaries** (`common/ErrorBoundary/ErrorBoundaries.tsx`)
-  - React Error Boundary that shows a full-screen fallback.
-  - Usage:
-    ```tsx
-    import { ErrorBoundaries } from '@biznessforce/ui-lib';
-
-    <ErrorBoundaries>
-      <YourChildren />
-    </ErrorBoundaries>
-    ```
-
-- **EzIdleTimer** (`common/IdeTimer/EzIdleTimer.tsx`)
-  - Session idle timeout modal built on `react-idle-timer`.
-  - Props: `{ defaultTimeout: number; enabled: boolean; onLogout: () => void }`
-  - Usage:
-    ```tsx
-    import { EzIdleTimer } from '@biznessforce/ui-lib';
-
-    <EzIdleTimer defaultTimeout={60} enabled onLogout={() => signOut()} />
-    ```
-
-- **NetworkDetector** (`common/NetworkDetector/NetworkDetector.tsx`)
-  - Displays a banner when offline/online state changes.
-  - Usage:
-    ```tsx
-    import { NetworkDetector } from '@biznessforce/ui-lib';
-
-    <NetworkDetector>
-      <AppRoutes />
-    </NetworkDetector>
-    ```
-
-- **GlobalErrorHandler** (`common/GlobalErrorHandler/GlobalErrorHandler.tsx`)
-  - Top-of-screen alert banner for global errors/success.
-  - Props: `{ children, globalError: { type: 'success'|'danger'; msg: string }, updateGlobalError: (v: undefined) => void }`
-  - Usage:
-    ```tsx
-    import { GlobalErrorHandler } from '@biznessforce/ui-lib';
-
-    <GlobalErrorHandler
-      globalError={{ type: 'danger', msg: 'Something failed' }}
-      updateGlobalError={() => {/* clear state */}}
-    >
-      <App />
-    </GlobalErrorHandler>
-    ```
-
-- **NoDataContainer** (`common/NoDataContainer/NoDataContainer.tsx`)
-  - Reusable empty/error/loading states.
-  - Type: one of `"loading" | "error" | "nodata" | "select" | "dev"`
-  - Usage:
-    ```tsx
-    import NoDataContainer, { NO_DATA_CONTAINER_MESSAGES } from '@biznessforce/ui-lib';
-
-    <NoDataContainer type={NO_DATA_CONTAINER_MESSAGES.NO_DATA.key} />
-    ```
-
-- **PageNotFound** (`common/PageNotFound/PageNotFound.tsx`)
-  - 404 page built on AntD `Result`.
-  - Props: `{ onBackClick: () => void }`
-
-- **ProgressLine** (`common/ProgressLine/ProgressLine.tsx`)
-  - Simple horizontal progress composed of visual parts.
-  - Props: `{ visualParts: { percentage: string; color: string }[], classes?, styles? }`
-
-- **InfoFooter** (`common/InfoFooter/InfoFooter.tsx`)
-  - Shows audit info like created/updated by and timestamps.
-  - Props: `{ info_1: { title, date: Dayjs|null, userBy }, info_2? }`
-
-- **FileUploadContainer** (`common/FileUploadContainer/FileUploadContainer.tsx`)
-  - Modal with drag/drop CSV (or configurable) file upload with validation.
-  - Props include:
-    - `title`, `visible`, `isLoading`,
-    - `error: { type: 'success'|'error'; msg: string }`,
-    - `onCloseHandle()`, `onSubmitHandle(file: File)`,
-    - `accept?`, `validTypes?`, `children?`
-  - Usage:
-    ```tsx
-    import { FileUploadContainer } from '@biznessforce/ui-lib';
-
-    <FileUploadContainer
-      title="Import"
-      visible={show}
-      isLoading={loading}
-      error={{ type: 'error', msg: errorMsg }}
-      onCloseHandle={() => setShow(false)}
-      onSubmitHandle={(file) => upload(file)}
-    />
-    ```
-
-- **HasPermissions** (`common/HasPermission/HasPermission.tsx`)
-  - Conditional render based on user roles/permissions.
-  - Props: `{ permissions: string[]; userRoles: string[]; SUPER_ADMIN: string; fallback: React.ReactNode }`
-
-- **FormComponents** (`common/FormComponents/`)
-  - Re-exports helper components: `FormColField`, `FormHorColAlign`, `FormHorColView`, `FormVerColAlign`, `FormSectionHeader`.
-
-- **data** (`common/data/index.ts`)
-  - Large list of `COUNTRIES` export for selects, etc.
-
-## Layouts
-
-Re-exports in `src/layouts/components/index.ts`.
-
-- **Sidebar** (`layouts/components/Sidebar.tsx`)
-  - Props `SidebarProps`:
-    - `menus: { [key: string]: { key, label, icon, title, permission: boolean|string[], children } }`
-    - `authorities: string[]`
-    - `SUPER_ADMIN: string|null`
-    - `logoBgColor?: string`
-    - `logo?: string`
-  - Uses `hasPermissions` to filter visible menu items and `react-router-dom` navigation.
-
-- **Header** (`layouts/components/Header.tsx`)
-  - Props `HeaderProps`: `{ title, toolSlot, rightToolSlot, loggedUserName, dropdownMenu }`
-  - Includes fullscreen toggle via `toggleFullScreen` util.
-
-- **Subheader** (`layouts/components/Subheader.tsx`)
-  - Props `SubheaderProps`: `{ leftSlot?, rightSlot?, bgColor? }`
-
-- **Footer** (`layouts/components/Footer.tsx`)
-  - Props `FooterProps`: `{ version: string; buildStamp: Date; rightTools?: {link,label}[] }`
-  - Uses `formatDate` util.
-
-- **Layout** (`layouts/components/Layout.tsx`)
-  - Wraps `Sidebar` and renders `children`.
-  - Props: `{ sidebarProps: SidebarProps; children }`
-
-- **PageLayout** (`layouts/components/PageLayout.tsx`)
-  - Page shell: `Header` + optional `Subheader` + content area + `Footer`.
-  - Props: `{ headerProps, footerProps, subheaderProps: SubheaderProps & { showSubheader: boolean }, bgColor? }`
-
-Example combining providers and layout:
-
-```tsx
-import React from 'react';
+```typescript
 import {
-  EzDrawer,
-  EzDrawerProvider,
+  FormSectionHeader,
+  FormVerColAlign,
+  FormHorColAlign,
+  FormHorColView,
+  FormColField,
+} from "@biznessforce/ui-lib";
+```
+
+- **FormSectionHeader** - Section headers with customizable actions
+- **FormVerColAlign** - Vertical column alignment for form fields
+- **FormHorColAlign** - Horizontal column alignment for form fields
+- **FormHorColView** - Horizontal view-only field display
+- **FormColField** - Generic column field with optional dividers
+
+### Layout Components
+
+```typescript
+import {
   Header,
   Footer,
-  PageLayout,
   Sidebar,
-  UserDropdownProvider,
-} from '@biznessforce/ui-lib';
-
-export function Root() {
-  return (
-    <EzDrawerProvider>
-      <UserDropdownProvider
-        account={{ fullName: 'Jane', accountId: 'acc-1' }}
-        disableChangePassword={false}
-        changePasswordAPI={() => Promise.resolve({} as any)}
-      >
-        <Sidebar menus={{}} authorities={[]} SUPER_ADMIN={null} />
-        <PageLayout
-          headerProps={{
-            title: 'Dashboard',
-            toolSlot: null,
-            rightToolSlot: <EzDrawer />, // Example
-            loggedUserName: 'Jane',
-            dropdownMenu: { items: [] },
-          }}
-          subheaderProps={{ showSubheader: false }}
-          footerProps={{ version: '0.0.0', buildStamp: new Date() }}
-        >
-          <div />
-        </PageLayout>
-      </UserDropdownProvider>
-    </EzDrawerProvider>
-  );
-}
+  Layout,
+  PageLayout,
+  Subheader,
+} from "@biznessforce/ui-lib";
 ```
 
-## Hooks
+- **Header** - Application header with user dropdown and fullscreen toggle
+- **Footer** - Application footer
+- **Sidebar** - Navigation sidebar
+- **Subheader** - Secondary header component
+- **Layout** - Main layout wrapper
+- **PageLayout** - Page-level layout component
 
-All hooks are re-exported from `src/hooks/index.ts`.
+## 🪝 Custom Hooks
 
-- **useAPI** (`hooks/useAPI/useAPI.ts`)
-  - Generic API-call lifecycle hook.
-  - Signature:
-    ```ts
-    useAPI(
-      APICall: (...props: any[]) => AxiosPromise,
-      callback?: ({ resp, setStatus }: { resp: AxiosResponse; setStatus: any }) => void,
-      errCallback?: (errMsg: string) => void,
-      config?: {
-        showGlobalLoader: boolean;
-        showGlobalError: boolean;
-        onLoader?: ({ isLoading }: { isLoading: boolean }) => void;
-        onThrowError?: ({ type, msg }: { type: string; msg: string }) => void;
-      }
-    )
-    ```
-  - Returns: `{ loading, status, setStatus, submitted, submitting, onRefresh, onSubmit }`.
+### useAPI
 
-- **Drawer system** (`hooks/Drawer/`)
-  - `EzDrawerProvider` context provider
-  - `EzDrawer` component that renders the `antd` Drawer with close button
-  - `useEzDrawer()` hook exposing `{ openDrawer, closeDrawer, openDispatchDrawer, visible, drawerContent, drawerProps }`
-  - Example:
-    ```tsx
-    import { EzDrawerProvider, EzDrawer, useEzDrawer } from '@biznessforce/ui-lib';
+Manage API calls with loading states and error handling:
 
-    function OpenBtn() {
-      const { openDrawer } = useEzDrawer();
-      return (
-        <button onClick={() => openDrawer(<div>Hi</div>, { placement: 'right' })}>
-          Open Drawer
-        </button>
-      );
-    }
+```typescript
+import { useAPI } from "@biznessforce/ui-lib";
 
-    <EzDrawerProvider>
-      <OpenBtn />
-      <EzDrawer />
-    </EzDrawerProvider>
-    ```
-
-- **SplashScreen** (`hooks/SplashScreen/`)
-  - `SplashScreenProvider` manipulates a DOM element with id `splash-screen`.
-  - `SplashScreen` component increments/decrements internal counter via context based on `visible`.
-
-- **useDeviceQuery** (`hooks/useDeviceQuery/`)
-  - Media-query helpers returning booleans like `isMobileScreen`, `isTabletPortrait`, etc.
-
-- **useQueryParams** (`hooks/useQueryParams/useQueryParams.ts`)
-  - Returns `URLSearchParams` from `react-router-dom` `useLocation()`.
-
-- **UserDropdownProvider** (`hooks/UserDropdown/UserDropdownProvider.tsx`)
-  - Context for header user dropdown, houses a change-password modal via AntD `Modal` and `Form`.
-  - Props: `{ children, account: { fullName, accountId }, disableChangePassword, changePasswordAPI }`
-
-## Utilities
-
-Exported from `common/Utils/index.ts` and `common/index.ts`:
-
-- **hasPermissions** (`common/Utils/PermissionHelper.tsx`): checks role arrays considering `SUPER_ADMIN`.
-- **formatDate** (`common/Utils/utils.tsx`): `Dayjs|Date|string -> string`, uses `dayjs`.
-- **toggleFullScreen** (`common/Utils/utils.tsx`): toggles browser fullscreen mode.
-- Additional helpers: `removeEmptyProps`, `firstLettersPipe`, `firstLetterCaps`, `getFlagEmoji`, `convertMinstoHrs`, `dataURItoBlob`, `uuidv4`, `RateRuleValidator`, `getGreetingTime`, `getIcon`.
-- Data: `COUNTRIES` (`common/data/index.ts`).
-
-Import examples:
-
-```ts
-import { hasPermissions, formatDate, toggleFullScreen } from '@biznessforce/ui-lib';
+const { loading, status, onSubmit, onRefresh } = useAPI(
+  apiFunction,
+  ({ resp, setStatus }) => {
+    // Success callback
+    console.log(resp.data);
+  },
+  (errMsg) => {
+    // Error callback
+    console.error(errMsg);
+  },
+  {
+    showGlobalLoader: true,
+    showGlobalError: true,
+    onLoader: ({ isLoading }) => console.log("Loading:", isLoading),
+    onThrowError: ({ type, msg }) => console.error(msg),
+  },
+);
 ```
 
-## Development
+### Other Hooks
 
-Prerequisites:
+- **useEzDrawer** - Drawer/modal state management
+- **useDeviceQuery** - Responsive device detection
+- **useQueryParams** - URL query parameter management
+- **SplashScreen** - Splash screen management
+- **UserDropdown** - User dropdown menu management
 
-- Node.js 18+
-- Yarn or npm
+## 🛠️ Utility Functions
 
-Install dependencies:
+```typescript
+import {
+  formatDate,
+  constructErrorMessage,
+  toggleFullScreen,
+  convertMinstoHrs,
+  getFlagEmoji,
+  firstLetterCaps,
+  uuidv4,
+  COUNTRIES,
+} from "@biznessforce/ui-lib";
+```
+
+### Key Utilities
+
+- **formatDate(date, format)** - Format dates using Day.js
+- **constructErrorMessage(error)** - Standardized error message construction
+- **toggleFullScreen()** - Cross-browser fullscreen toggle
+- **convertMinstoHrs(mins)** - Convert minutes to hours format
+- **getFlagEmoji(countryCode)** - Get flag emoji from country code
+- **firstLetterCaps(name)** - Capitalize first letter of each word
+- **uuidv4()** - Generate UUID v4
+- **COUNTRIES** - Complete countries dataset with codes and nationalities
+
+## 📖 Usage Examples
+
+### InfoFooter Component
+
+```typescript
+import { InfoFooter } from '@biznessforce/ui-lib';
+import dayjs from 'dayjs';
+
+<InfoFooter
+  info_1={{
+    title: 'Created by',
+    userBy: 'John Doe',
+    date: dayjs('2024-01-15')
+  }}
+  info_2={{
+    title: 'Modified by',
+    userBy: 'Jane Smith',
+    date: dayjs('2024-02-10')
+  }}
+/>
+```
+
+### Header Component
+
+```typescript
+import { Header } from '@biznessforce/ui-lib';
+
+<Header
+  title="Dashboard"
+  loggedUserName="John Doe"
+  toolSlot={<Button>Action</Button>}
+  rightToolSlot={<Button>Settings</Button>}
+  dropdownMenu={{
+    items: [
+      { key: 'profile', label: 'Profile' },
+      { key: 'logout', label: 'Logout' }
+    ]
+  }}
+/>
+```
+
+### Form Components
+
+```typescript
+import { FormSectionHeader, FormVerColAlign } from '@biznessforce/ui-lib';
+import { Form, Input } from 'antd';
+
+<Form>
+  <FormSectionHeader
+    title="User Information"
+    rightAction={<Button>Save</Button>}
+  />
+  <FormVerColAlign
+    name="username"
+    label="Username"
+    formElement={<Input />}
+    span={12}
+  />
+</Form>
+```
+
+## 📚 Storybook
+
+This library includes Storybook for interactive component documentation and development.
+
+### Running Storybook Locally
 
 ```bash
-yarn
+yarn storybook
 # or
-npm i
+npm run storybook
 ```
 
-Run type build (Rollup is used for bundling library builds):
+Storybook will start on [http://localhost:6006/](http://localhost:6006/)
+
+### Building Storybook
+
+To build a static version of Storybook for deployment:
 
 ```bash
-yarn build
+yarn build-storybook
 # or
+npm run build-storybook
+```
+
+The static build will be output to `storybook-static/` directory.
+
+### What's in Storybook
+
+- **Interactive Examples**: All components with live controls
+- **Documentation**: Usage examples and API documentation
+- **Visual Testing**: See components in different states
+- **Code Snippets**: Copy-paste ready examples
+
+## 🏗️ Development
+
+### Build the Library
+
+```bash
 npm run build
 ```
 
-Build outputs:
-
-- JS bundle: `dist/cjs/index.js` (format set to `esm` in `rollup.config.js` output)
-- Type declarations: `dist/index.d.ts` (generated via `rollup-plugin-dts` from `dist/cjs/types/...`)
-
-Configuration highlights:
-
-- Entry: `src/index.ts` re-exports `common`, `layouts`, `hooks`.
-- Rollup plugins: TypeScript, peerDepsExternal, image, sourcemaps, commonjs, resolve, terser, and `rollup-plugin-dts` for typings.
-- `tsconfig.json` emits declarations only for library authoring (`emitDeclarationOnly: true`).
-
-## Release and publish
-
-We use `standard-version` for versioning and changelog, and publish to GitHub Packages.
-
-1) Bump version and create tag:
+### Release New Version
 
 ```bash
-yarn release
-# or
-npm run release
+npm run release  # Bump patch version
+npm run push     # Release + Build + Publish
 ```
 
-2) Build and publish:
+### Project Structure
 
-```bash
-yarn push
-# or
-npm run push
+```
+@biznessforce:ui-lib/
+├── src/
+│   ├── common/          # Reusable UI components
+│   ├── hooks/           # Custom React hooks
+│   ├── layouts/         # Layout components
+│   ├── assets/          # Static assets
+│   └── index.ts         # Main entry point
+├── dist/                # Build output
+├── package.json
+├── tsconfig.json
+└── rollup.config.js
 ```
 
-`push` runs `release`, `build`, then `npm publish` to `https://npm.pkg.github.com/` (see `publishConfig.registry`).
+## 🎨 Theming
 
-## FAQ
+This library uses Ant Design's theming system. Customize the theme in your application:
 
-- **Why do I see peer dependency warnings for React/AntD?**
-  Ensure your app installs React 18 (`react@^18.3.1`, `react-dom@^18.3.1`) and `antd@^5.27.3` to match this library’s peers.
+```typescript
+import { ConfigProvider } from 'antd';
 
-- **How do I use the drawer system?**
-  Wrap your app (or a high-level tree) with `EzDrawerProvider`, render one `EzDrawer` at the root, and call `openDrawer()` via `useEzDrawer()`.
+<ConfigProvider
+  theme={{
+    token: {
+      colorPrimary: '#1890ff',
+      borderRadius: 4,
+    },
+  }}
+>
+  <App />
+</ConfigProvider>
+```
 
-- **Does the splash screen do anything by itself?**
-  It toggles a DOM element with id `splash-screen`. Provide that element in your host `index.html` and manage visibility using the `SplashScreen` component.
+## 📝 TypeScript Support
 
-- **Tree-shaking and ESM/CJS?**
-  The bundle is emitted as ESM from Rollup; consumers using modern bundlers will benefit from tree-shaking.
+Full TypeScript support with exported type definitions:
+
+```typescript
+import type { HeaderProps, InfoFooterProps } from "@biznessforce/ui-lib";
+```
+
+## 🤝 Contributing
+
+This is a private package for Biznessforce projects. For internal contributions:
+
+1. Create a feature branch
+2. Make your changes
+3. Update CHANGELOG.md
+4. Submit a pull request
+
+## 📄 License
+
+Private - Biznessforce Internal Use Only
+
+## 🔗 Links
+
+- [Ant Design Documentation](https://ant.design/)
+- [React Documentation](https://reactjs.org/)
+- [TypeScript Documentation](https://www.typescriptlang.org/)
 
 ---
 
-Happy building! If you need additional examples or run into issues, please open an issue or PR.
+**Version**: 0.0.34-beta.2  
+**Author**: @ikismail  
+**Registry**: GitHub Packages
