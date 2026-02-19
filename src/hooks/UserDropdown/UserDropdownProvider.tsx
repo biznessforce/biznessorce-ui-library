@@ -2,7 +2,7 @@ import { Button, Form, Input, MenuProps, Modal } from "antd";
 import { AxiosPromise } from "axios";
 import { trim } from "lodash";
 import React, { createContext, JSX, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { constructErrorMessage } from "../../common";
 import { useAPI } from "../useAPI";
 
@@ -24,7 +24,7 @@ export const UserDropdownProvider = ({
   disableChangePassword,
   changePasswordAPI,
 }: DropdownProviderProps) => {
-  const navigate = useNavigate();
+  const navigate = useHistory();
   const [form] = Form.useForm();
 
   const [showPasswordChange, setShowPasswordChange] = useState(false);
@@ -53,19 +53,19 @@ export const UserDropdownProvider = ({
       setStatus({
         type: "error",
         msg: constructErrorMessage(e),
-      })
+      }),
   );
 
   const handleSubmit = () => {
     createPassword(
       account?.accountId,
       trim(form.getFieldValue("currentPassword")),
-      trim(form.getFieldValue("confirmPassword"))
+      trim(form.getFieldValue("confirmPassword")),
     );
   };
 
   const onSignOut = () => {
-    navigate(`/logout?redirect=${location.pathname}`);
+    navigate.push(`/logout?redirect=${location.pathname}`);
   };
 
   const items: MenuProps["items"] = [
@@ -182,8 +182,8 @@ export const UserDropdownProvider = ({
                   }
                   return Promise.reject(
                     new Error(
-                      "New Password and Confirm Password does not match"
-                    )
+                      "New Password and Confirm Password does not match",
+                    ),
                   );
                 },
               }),
