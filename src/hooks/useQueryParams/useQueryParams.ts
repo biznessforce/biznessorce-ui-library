@@ -1,5 +1,5 @@
 // useQueryParams using vanilla JavaScript (no React Router dependency)
-import { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 
 export const useQueryParams = () => {
   // Force re-render when URL changes
