@@ -13,4 +13,5 @@ export * from "./InfoFooter";
 export * from "./FileUploadContainer";
 export * from "./ProgressLine";
 
+export * from "./Table";
 export * from "./data";
