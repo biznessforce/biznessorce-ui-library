@@ -9,14 +9,14 @@ function DeviceQueryDemo() {
   const { isMobile, isTablet, isDesktop } = useDeviceQuery();
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <Title level={4}>Current Device Type</Title>
       <Paragraph>
         Resize your browser window to see the device type change in real-time.
       </Paragraph>
 
       <Card>
-        <Space direction="vertical">
+        <Space orientation="vertical">
           <div>
             <Text strong>Mobile: </Text>
             <Tag color={isMobile ? "green" : "default"}>
@@ -41,21 +41,21 @@ function DeviceQueryDemo() {
       <Card title="Responsive Content Example">
         {isMobile && (
           <Alert
-            message="Mobile View"
+            title="Mobile View"
             description="Optimized for small screens"
             type="info"
           />
         )}
         {isTablet && (
           <Alert
-            message="Tablet View"
+            title="Tablet View"
             description="Optimized for medium screens"
             type="success"
           />
         )}
         {isDesktop && (
           <Alert
-            message="Desktop View"
+            title="Desktop View"
             description="Optimized for large screens"
             type="warning"
           />

@@ -10,7 +10,7 @@ function BuggyComponent({ shouldThrow }: { shouldThrow: boolean }) {
   if (shouldThrow) {
     throw new Error("This is a simulated error!");
   }
-  return <Alert message="Component is working fine!" type="success" />;
+  return <Alert title="Component is working fine!" type="success" />;
 }
 
 // Demo component
@@ -24,7 +24,7 @@ function ErrorBoundaryDemo() {
   };
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <Title level={4}>Error Boundary Demo</Title>
       <Paragraph>
         Error boundaries catch JavaScript errors in child components and display
@@ -47,7 +47,7 @@ function ErrorBoundaryDemo() {
       </Card>
 
       <Alert
-        message="How it works"
+        title="How it works"
         description={
           <ul>
             <li>Click "Trigger Error" to simulate a component error</li>

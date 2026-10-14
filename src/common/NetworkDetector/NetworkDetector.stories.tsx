@@ -12,14 +12,14 @@ function NetworkDetectorDemo() {
 
   return (
     <NetworkDetector>
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         <Title level={4}>Network Detector Demo</Title>
         <Paragraph>
           This component monitors your network connection status in real-time.
         </Paragraph>
 
         <Card>
-          <Space direction="vertical" style={{ width: "100%" }}>
+          <Space orientation="vertical" style={{ width: "100%" }}>
             <div>
               <strong>Current Status: </strong>
               <Tag
@@ -31,7 +31,7 @@ function NetworkDetectorDemo() {
             </div>
 
             <Alert
-              message="Try it yourself"
+              title="Try it yourself"
               description="Open your browser's DevTools (F12), go to the Network tab, and toggle 'Offline' mode to see the detector in action."
               type="info"
               showIcon

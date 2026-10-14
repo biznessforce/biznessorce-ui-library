@@ -22,7 +22,7 @@ function HasPermissionDemo() {
   };
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <Title level={4}>HasPermission Component Demo</Title>
       <Paragraph>
         Conditionally render components based on user permissions. Toggle
@@ -55,13 +55,13 @@ function HasPermissionDemo() {
       </Card>
 
       <Card title="Permission-Based Rendering">
-        <Space direction="vertical" style={{ width: "100%" }}>
+        <Space orientation="vertical" style={{ width: "100%" }}>
           <HasPermission
             permissions={["read"]}
             userPermissions={userPermissions}
           >
             <Alert
-              message="Read Access"
+              title="Read Access"
               description="You can view this content because you have 'read' permission."
               type="info"
               showIcon
@@ -73,7 +73,7 @@ function HasPermissionDemo() {
             userPermissions={userPermissions}
           >
             <Alert
-              message="Write Access"
+              title="Write Access"
               description="You can edit this content because you have 'write' permission."
               type="success"
               showIcon
@@ -85,7 +85,7 @@ function HasPermissionDemo() {
             userPermissions={userPermissions}
           >
             <Alert
-              message="Delete Access"
+              title="Delete Access"
               description="You can delete this content because you have 'delete' permission."
               type="warning"
               showIcon
@@ -97,7 +97,7 @@ function HasPermissionDemo() {
             userPermissions={userPermissions}
           >
             <Alert
-              message="Admin Access"
+              title="Admin Access"
               description="You have full administrative access!"
               type="error"
               showIcon
@@ -112,7 +112,7 @@ function HasPermissionDemo() {
           userPermissions={userPermissions}
         >
           <Alert
-            message="Full Editor Access"
+            title="Full Editor Access"
             description="You can both read AND write because you have both permissions."
             type="success"
             showIcon
@@ -121,7 +121,7 @@ function HasPermissionDemo() {
         {!userPermissions.includes("read") ||
         !userPermissions.includes("write") ? (
           <Alert
-            message="Insufficient Permissions"
+            title="Insufficient Permissions"
             description="You need both 'read' and 'write' permissions to see the editor."
             type="warning"
             showIcon

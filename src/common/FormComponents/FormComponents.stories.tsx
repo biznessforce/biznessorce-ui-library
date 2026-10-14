@@ -21,7 +21,7 @@ type Story = StoryObj;
 
 export const SectionHeader: Story = {
   render: () => (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <FormSectionHeader title="Personal Information" />
       <FormSectionHeader title="Contact Details" />
       <FormSectionHeader title="Employment Information" />
@@ -94,7 +94,7 @@ export const HorizontalLayout: Story = {
 
 export const ViewMode: Story = {
   render: () => (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <FormSectionHeader title="Employee Information" />
       <FormHorColView>
         <FormColField label="Employee ID" value="EMP-001" />

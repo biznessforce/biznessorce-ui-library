@@ -29,7 +29,7 @@ function FormatDateDemo() {
 
   return (
     <Card title="formatDate">
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         <Paragraph>
           Format dates using Day.js with customizable format strings.
         </Paragraph>
@@ -41,7 +41,7 @@ function FormatDateDemo() {
           addonBefore="Format:"
         />
         <Alert
-          message="Formatted Result"
+          title="Formatted Result"
           description={<Text code>{formatDate(date, format)}</Text>}
           type="success"
         />
@@ -59,7 +59,7 @@ function ConvertMinsToHrsDemo() {
 
   return (
     <Card title="convertMinstoHrs">
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         <Paragraph>Convert minutes to hours and minutes format.</Paragraph>
         <Input
           type="number"
@@ -68,7 +68,7 @@ function ConvertMinsToHrsDemo() {
           addonBefore="Minutes:"
         />
         <Alert
-          message="Converted Result"
+          title="Converted Result"
           description={<Text code>{convertMinstoHrs(minutes)}</Text>}
           type="success"
         />
@@ -83,7 +83,7 @@ function GetFlagEmojiDemo() {
 
   return (
     <Card title="getFlagEmoji">
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         <Paragraph>Convert country code to flag emoji.</Paragraph>
         <Select
           value={countryCode}
@@ -101,7 +101,7 @@ function GetFlagEmojiDemo() {
           ]}
         />
         <Alert
-          message="Flag Emoji"
+          title="Flag Emoji"
           description={
             <span style={{ fontSize: 48 }}>{getFlagEmoji(countryCode)}</span>
           }
@@ -118,7 +118,7 @@ function FirstLetterCapsDemo() {
 
   return (
     <Card title="firstLetterCaps">
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         <Paragraph>Capitalize the first letter of a string.</Paragraph>
         <Input
           value={text}
@@ -126,7 +126,7 @@ function FirstLetterCapsDemo() {
           placeholder="Enter text"
         />
         <Alert
-          message="Capitalized Result"
+          title="Capitalized Result"
           description={<Text code>{firstLetterCaps(text)}</Text>}
           type="success"
         />
@@ -141,13 +141,13 @@ function UuidGeneratorDemo() {
 
   return (
     <Card title="uuidv4">
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         <Paragraph>Generate a random UUID v4.</Paragraph>
         <Button type="primary" onClick={() => setUuid(uuidv4())}>
           Generate New UUID
         </Button>
         <Alert
-          message="Generated UUID"
+          title="Generated UUID"
           description={
             <Space>
               <Text code>{uuid}</Text>
@@ -170,13 +170,13 @@ function UuidGeneratorDemo() {
 function FullscreenDemo() {
   return (
     <Card title="toggleFullScreen">
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         <Paragraph>Toggle fullscreen mode for the entire page.</Paragraph>
         <Button type="primary" onClick={toggleFullScreen}>
           Toggle Fullscreen
         </Button>
         <Alert
-          message="Note"
+          title="Note"
           description="Press ESC to exit fullscreen mode"
           type="info"
         />

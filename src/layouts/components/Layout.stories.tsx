@@ -69,7 +69,7 @@ const SampleContent = () => (
       background: "#f0f2f5",
     }}
   >
-    <Space direction="vertical" style={{ width: "100%" }} size="large">
+    <Space orientation="vertical" style={{ width: "100%" }} size="large">
       <Card>
         <Typography.Title level={2}>Application Layout</Typography.Title>
         <Typography.Paragraph>

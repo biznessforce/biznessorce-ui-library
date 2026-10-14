@@ -54,7 +54,7 @@ function UseAPIDemo() {
   };
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <Title level={4}>useAPI Hook Demo</Title>
       <Paragraph>
         Click the button below to trigger an API call. The hook manages loading
@@ -68,11 +68,11 @@ function UseAPIDemo() {
         <Button onClick={handleClear}>Clear</Button>
       </Space>
 
-      {loading && <Spin tip="Loading..." />}
+      {loading && <Spin description="Loading..." />}
 
       {status && (
         <Alert
-          message={status.msg}
+          title={status.msg}
           type={status.type}
           showIcon
           closable
@@ -82,7 +82,7 @@ function UseAPIDemo() {
 
       {result && (
         <Alert
-          message="API Response"
+          title="API Response"
           description={<pre>{JSON.stringify(result, null, 2)}</pre>}
           type="info"
         />
@@ -106,7 +106,7 @@ function UseAPIErrorDemo() {
   );
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <Title level={4}>Error Handling Demo</Title>
       <Paragraph>
         This demo shows how useAPI handles errors. Click to trigger a failed API
@@ -119,7 +119,7 @@ function UseAPIErrorDemo() {
 
       {status && (
         <Alert
-          message={status.msg}
+          title={status.msg}
           type={status.type}
           showIcon
           closable
@@ -153,7 +153,7 @@ function UseAPIGlobalLoaderDemo() {
   );
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <Title level={4}>Global Loader Demo</Title>
       <Paragraph>
         This demo shows how to use global loader and error handlers. The hook
@@ -165,12 +165,12 @@ function UseAPIGlobalLoaderDemo() {
       </Button>
 
       {globalLoading && (
-        <Alert message="Global loading state active..." type="info" showIcon />
+        <Alert title="Global loading state active..." type="info" showIcon />
       )}
 
       {globalError && (
         <Alert
-          message={globalError.msg}
+          title={globalError.msg}
           type={globalError.type as any}
           showIcon
           closable

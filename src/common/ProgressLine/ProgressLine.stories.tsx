@@ -45,9 +45,9 @@ export const CustomColor: Story = {
 
 export const MultipleProgress: Story = {
   render: () => (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <Card title="Task Progress">
-        <Space direction="vertical" style={{ width: "100%" }}>
+        <Space orientation="vertical" style={{ width: "100%" }}>
           <div>
             <Paragraph>Planning Phase</Paragraph>
             <ProgressLine percent={100} strokeColor="#52c41a" />

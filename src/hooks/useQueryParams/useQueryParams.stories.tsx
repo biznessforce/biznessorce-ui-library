@@ -14,7 +14,7 @@ function QueryParamsDemo() {
   const currentValue = getQueryParam(paramName);
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <Title level={4}>URL Query Parameters Manager</Title>
       <Paragraph>
         Manage URL query parameters without page reload. Changes are reflected
@@ -26,7 +26,7 @@ function QueryParamsDemo() {
       </Card>
 
       <Card title="Set Parameter">
-        <Space direction="vertical" style={{ width: "100%" }}>
+        <Space orientation="vertical" style={{ width: "100%" }}>
           <Input
             placeholder="Parameter name"
             value={paramName}
@@ -55,7 +55,7 @@ function QueryParamsDemo() {
 
       {currentValue && (
         <Alert
-          message={`Current value of "${paramName}"`}
+          title={`Current value of "${paramName}"`}
           description={<Text code>{currentValue}</Text>}
           type="info"
           showIcon

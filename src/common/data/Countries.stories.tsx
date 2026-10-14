@@ -59,7 +59,7 @@ function CountriesExplorer() {
   ];
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <Title level={4}>Countries Dataset Explorer</Title>
       <Paragraph>
         Browse and search through the complete countries dataset. This data
@@ -67,7 +67,7 @@ function CountriesExplorer() {
       </Paragraph>
 
       <Card>
-        <Space direction="vertical" style={{ width: "100%" }}>
+        <Space orientation="vertical" style={{ width: "100%" }}>
           <Search
             placeholder="Search by name, code, dial code, or nationality"
             value={searchText}
