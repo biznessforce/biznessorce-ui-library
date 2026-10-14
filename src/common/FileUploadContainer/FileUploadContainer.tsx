@@ -138,13 +138,13 @@ const FileUploadContainer = ({
         >
           <div className={"text-center"}>
             {!selectedFile ? (
-              <Space direction="vertical">
+              <Space orientation="vertical">
                 <CloudUploadOutlined className="fs-3" />
                 <Typography.Text>{DRAG_DROP_FILE_MESSAGE}</Typography.Text>
               </Space>
             ) : (
               <>
-                <Space direction="vertical">
+                <Space orientation="vertical">
                   <FileOutlined className="fs-3" />
                   <Typography.Text>{selectedFile?.name}</Typography.Text>
                 </Space>
