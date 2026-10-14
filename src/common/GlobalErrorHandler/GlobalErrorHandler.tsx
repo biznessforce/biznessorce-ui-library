@@ -55,7 +55,7 @@ const GlobalErrorHandler: FC<{
                   updateGlobalError(undefined);
                 }, 1000);
               }}
-              message={
+              title={
                 <Space>
                   <Typography.Paragraph
                     className="mb-0 text-danger"

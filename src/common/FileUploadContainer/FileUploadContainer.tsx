@@ -111,7 +111,7 @@ const FileUploadContainer = ({
       {error && error.msg && (
         <Alert
           className="mb-5"
-          message={error.msg}
+          title={error.msg}
           type={error.type as any}
           closable
         />

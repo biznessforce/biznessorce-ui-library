@@ -53,7 +53,7 @@ const NetworkDetector: FC<NetworkDetectorProps> = ({ children }) => {
         >
           <Alert
             type={state.type === "online" ? "success" : "warning"}
-            message={
+            title={
               state.type === "offline" ? (
                 <Space>
                   <Typography.Text strong>Connection Lost</Typography.Text>
