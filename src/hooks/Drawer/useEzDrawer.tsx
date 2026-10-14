@@ -17,10 +17,13 @@ const useEzDrawer = () => {
   ) => {
     dispatch(
       dispatchFunction(itemId, (data: any) => {
+        // antd 6: destroyOnClose -> destroyOnHidden. Map a caller's legacy key so
+        // destroyOnClose: false still wins over the default.
+        const { destroyOnClose, ...drawerConfig } = config?.drawerConfig ?? {};
         const drawerProps = {
           placement: "right",
-          destroyOnClose: true,
-          ...config?.drawerConfig,
+          destroyOnHidden: destroyOnClose ?? true,
+          ...drawerConfig,
         };
 
         if (config?.titleKey) {
