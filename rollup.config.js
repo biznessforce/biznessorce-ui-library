@@ -28,6 +28,17 @@ export default [
         declarationDir: "types",
         sourceMap: true,
         inlineSources: true,
+        // keep Storybook/Vitest files out of the published type declarations
+        exclude: [
+          "**/*.stories.ts",
+          "**/*.stories.tsx",
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "src/stories/**",
+          ".storybook/**",
+          "vitest.config.ts",
+          "vitest.shims.d.ts",
+        ],
       }),
       peerDepsExternal(),
       image(),
