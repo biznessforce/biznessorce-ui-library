@@ -85,7 +85,7 @@ export const UserDropdownProvider = ({
       <Modal
         open={showPasswordChange}
         onCancel={handleClose}
-        destroyOnClose={true}
+        destroyOnHidden={true}
         style={{ top: 0 }}
         width={600}
         title={"Change Password"}

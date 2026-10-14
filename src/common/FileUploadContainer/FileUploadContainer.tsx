@@ -82,7 +82,7 @@ const FileUploadContainer = ({
       onCancel={onCloseHandle}
       style={{ top: 0 }}
       width={600}
-      destroyOnClose={true}
+      destroyOnHidden={true}
       open={props.visible}
       {...props}
       footer={

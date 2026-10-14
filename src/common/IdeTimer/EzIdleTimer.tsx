@@ -109,7 +109,7 @@ const EZIdleTimer: FC<{
   return (
     <Modal
       title="Session Timeout Notification"
-      destroyOnClose={true}
+      destroyOnHidden={true}
       open={open}
       onCancel={handleStillHere}
       style={{ top: 0 }}
