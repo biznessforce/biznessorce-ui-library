@@ -1,5 +1,5 @@
 import { get } from "lodash";
-import { JSX, useContext } from "react";
+import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { EzDrawerContext } from "./EzdrawerProvider";
 

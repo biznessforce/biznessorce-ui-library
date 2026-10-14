@@ -3,7 +3,7 @@ import { Image, Layout, Menu } from "antd";
 import { isBoolean, omit } from "lodash";
 // import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import React, { JSX, useEffect } from "react";
+import React, { useEffect } from "react";
 
 const { Sider } = Layout;
 
@@ -30,7 +30,7 @@ type ReturnTypeGetItems = OmittedPermissionSidebarMenu[];
 const getItems = (
   accPermission: string[],
   SidebarMenus: SidebarMenuProps,
-  SUPER_ADMIN: string | null,
+  SUPER_ADMIN: string | null
 ): ReturnTypeGetItems => {
   return Object.values(SidebarMenus).flatMap((menu) => {
     if (
@@ -67,7 +67,7 @@ export function Sidebar({
   useEffect(() => {
     const path = window.location.pathname.split("/");
     setSelectedMenu(path[1]);
-  }, [history.location.pathname]);
+  }, [history]);
 
   return (
     <Sider
@@ -85,10 +85,7 @@ export function Sidebar({
     >
       <div
         className="demo-logo-vertical d-flex justify-content-center align-items-center"
-        style={{
-          height: "64px",
-          background: logoBgColor || "#002140",
-        }}
+        style={{ height: "64px", background: logoBgColor || "#002140" }}
       >
         {logo && <Image src={logo} alt="logo" preview={false} />}
       </div>

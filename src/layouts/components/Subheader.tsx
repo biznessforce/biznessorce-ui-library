@@ -1,5 +1,5 @@
 import { Flex, Layout, Space } from "antd";
-import React, { JSX } from "react";
+import React from "react";
 
 const { Header: AntHeader } = Layout;
 
