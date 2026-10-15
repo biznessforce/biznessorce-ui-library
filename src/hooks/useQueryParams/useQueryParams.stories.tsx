@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
+import { MemoryRouter, useNavigate } from "react-router-dom";
 import { Button, Space, Typography, Card, Input, Alert } from "antd";
 import { useQueryParams } from "./useQueryParams";
 
@@ -7,88 +8,67 @@ const { Title, Paragraph, Text } = Typography;
 
 // Demo component for query params
 function QueryParamsDemo() {
-  const { getQueryParam, setQueryParam, removeQueryParam } = useQueryParams();
+  const query = useQueryParams();
+  const navigate = useNavigate();
   const [paramName, setParamName] = useState("demo");
   const [paramValue, setParamValue] = useState("value");
 
-  const currentValue = getQueryParam(paramName);
+  const updateParam = (value: string | null) => {
+    const next = new URLSearchParams(query);
+    if (value === null) next.delete(paramName);
+    else next.set(paramName, value);
+    navigate({ search: next.toString() });
+  };
 
   return (
     <Space orientation="vertical" style={{ width: "100%" }}>
-      <Title level={4}>URL Query Parameters Manager</Title>
+      <Title level={4}>URL Query Parameters</Title>
       <Paragraph>
-        Manage URL query parameters without page reload. Changes are reflected
-        in the browser's address bar.
+        <Text code>useQueryParams()</Text> returns the current location's{" "}
+        <Text code>URLSearchParams</Text> and re-renders when the router location changes.
       </Paragraph>
 
-      <Card title="Current URL">
-        <Text code>{window.location.href}</Text>
-      </Card>
-
-      <Card title="Set Parameter">
+      <Card size="small">
         <Space orientation="vertical" style={{ width: "100%" }}>
           <Input
-            placeholder="Parameter name"
+            addonBefore="Name"
             value={paramName}
             onChange={(e) => setParamName(e.target.value)}
-            addonBefore="Name:"
           />
           <Input
-            placeholder="Parameter value"
+            addonBefore="Value"
             value={paramValue}
             onChange={(e) => setParamValue(e.target.value)}
-            addonBefore="Value:"
           />
           <Space>
-            <Button
-              type="primary"
-              onClick={() => setQueryParam(paramName, paramValue)}
-            >
-              Set Parameter
+            <Button type="primary" onClick={() => updateParam(paramValue)}>
+              Set
             </Button>
-            <Button danger onClick={() => removeQueryParam(paramName)}>
-              Remove Parameter
-            </Button>
+            <Button onClick={() => updateParam(null)}>Remove</Button>
           </Space>
         </Space>
       </Card>
 
-      {currentValue && (
-        <Alert
-          title={`Current value of "${paramName}"`}
-          description={<Text code>{currentValue}</Text>}
-          type="info"
-          showIcon
-        />
-      )}
-
-      <Card title="Common Parameters">
-        <Space wrap>
-          <Button onClick={() => setQueryParam("page", "1")}>Set page=1</Button>
-          <Button onClick={() => setQueryParam("sort", "asc")}>
-            Set sort=asc
-          </Button>
-          <Button onClick={() => setQueryParam("filter", "active")}>
-            Set filter=active
-          </Button>
-          <Button
-            danger
-            onClick={() => {
-              removeQueryParam("page");
-              removeQueryParam("sort");
-              removeQueryParam("filter");
-            }}
-          >
-            Clear All
-          </Button>
-        </Space>
-      </Card>
+      <Alert
+        title={`Current value of "${paramName}"`}
+        description={query.get(paramName) ?? "(not set)"}
+        type="info"
+        showIcon
+      />
+      <Text type="secondary">Search: ?{query.toString()}</Text>
     </Space>
   );
 }
 
 const meta: Meta = {
   title: "Hooks/useQueryParams",
+  decorators: [
+    (Story) => (
+      <MemoryRouter initialEntries={["/?demo=value"]}>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
   parameters: {
     layout: "padded",
     docs: {
@@ -96,14 +76,8 @@ const meta: Meta = {
         component: `
 # useQueryParams Hook
 
-A hook for managing URL query parameters with React Router integration.
-
-## Features
-- Get query parameter values
-- Set query parameters without page reload
-- Remove query parameters
-- TypeScript support
-- React Router integration
+Returns the current location's query string as \`URLSearchParams\` (memoised on
+\`location.search\`). Must be rendered inside a react-router router.
 
 ## Usage
 
@@ -111,28 +85,13 @@ A hook for managing URL query parameters with React Router integration.
 import { useQueryParams } from '@biznessforce/ui-lib';
 
 function MyComponent() {
-  const { getQueryParam, setQueryParam, removeQueryParam } = useQueryParams();
-
-  const page = getQueryParam('page');
-
-  return (
-    <div>
-      <button onClick={() => setQueryParam('page', '2')}>
-        Go to Page 2
-      </button>
-      <button onClick={() => removeQueryParam('page')}>
-        Clear Page
-      </button>
-    </div>
-  );
+  const query = useQueryParams();
+  const page = query.get('page');
+  return <span>Page {page}</span>;
 }
 \`\`\`
 
-## Methods
-
-- **getQueryParam(name)**: Get the value of a query parameter
-- **setQueryParam(name, value)**: Set a query parameter
-- **removeQueryParam(name)**: Remove a query parameter
+To change the query string, navigate with the router (e.g. \`navigate({ search })\`).
         `,
       },
     },
