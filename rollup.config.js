@@ -25,7 +25,7 @@ export default [
       // NEW
       typescript({
         declaration: true,
-        declarationDir: "types",
+        declarationDir: "dist/cjs/types",
         sourceMap: true,
         inlineSources: true,
         // keep Storybook/Vitest files out of the published type declarations
