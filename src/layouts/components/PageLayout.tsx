@@ -7,7 +7,7 @@ import Subheader, { SubheaderProps } from "./Subheader";
 const { Content } = AntLayout;
 
 type PageLayoutProps = {
-  children: JSX.Element;
+  children: React.JSX.Element;
   headerProps: HeaderProps;
   footerProps: FooterProps;
   subheaderProps: SubheaderProps & { showSubheader: boolean };

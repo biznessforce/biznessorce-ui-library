@@ -14,7 +14,7 @@ export const UserDropdownContext = createContext({
 });
 
 type DropdownProviderProps = {
-  children: JSX.Element;
+  children: React.JSX.Element;
   account: { fullName: string; accountId: string };
   changePasswordAPI: () => AxiosPromise;
 };

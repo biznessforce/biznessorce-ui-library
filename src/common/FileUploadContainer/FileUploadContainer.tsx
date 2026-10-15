@@ -32,7 +32,7 @@ const FileUploadContainer = ({
   validTypes = FILE_UPLOAD_VALID_TYPES,
   ...props
 }: FileImportTypes) => {
-  const fileInputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const fileInputRef = useRef(undefined) as unknown as React.MutableRefObject<HTMLInputElement>;
 
   const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [errorMsg, setErrorMsg] = React.useState("");

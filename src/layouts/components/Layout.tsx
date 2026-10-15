@@ -4,7 +4,7 @@ import Sidebar, { SidebarProps } from './Sidebar';
 
 type LayoutProps = React.FC & {
   sidebarProps: SidebarProps;
-  children: JSX.Element;
+  children: React.JSX.Element;
 };
 
 export function Layout({ children, sidebarProps }: LayoutProps) {

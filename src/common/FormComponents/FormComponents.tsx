@@ -94,7 +94,7 @@ export function FormColField({
   label?: string;
   textColor?: string;
   value?: string | number | any;
-  valueContainer?: JSX.Element;
+  valueContainer?: React.JSX.Element;
   hideDivider?: boolean;
   flex?: boolean;
 }) {

@@ -4,8 +4,8 @@ import React from "react";
 const { Header: AntHeader } = Layout;
 
 export type SubheaderProps = {
-  leftSlot?: JSX.Element;
-  rightSlot?: JSX.Element;
+  leftSlot?: React.JSX.Element;
+  rightSlot?: React.JSX.Element;
   bgColor?: string;
 };
 

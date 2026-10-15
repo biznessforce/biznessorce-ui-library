@@ -10,7 +10,7 @@ const useEzDrawer = () => {
   const dispatch = useDispatch();
 
   const openDispatchDrawer = (
-    Component: React.ReactNode | JSX.Element,
+    Component: React.ReactNode | React.JSX.Element,
     dispatchFunction: any,
     itemId: string,
     config: any

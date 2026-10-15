@@ -10,7 +10,7 @@ const { Sider } = Layout;
 type SidebarMenu = {
   key: string;
   label: string;
-  icon: JSX.Element; // Assuming you are using JSX elements for icons
+  icon: React.JSX.Element; // Assuming you are using JSX elements for icons
   title: string;
   permission: boolean | string[];
   children: OmittedPermissionSidebarMenu;

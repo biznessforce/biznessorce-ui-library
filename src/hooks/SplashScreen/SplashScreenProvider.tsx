@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 
 export const SplashScreenContext = createContext({});
 
-export function SplashScreenProvider({ children }: { children: JSX.Element }) {
+export function SplashScreenProvider({ children }: { children: React.JSX.Element }) {
   const [count, setCount] = useState(0);
   const visible = count > 0;
 
