@@ -2,7 +2,7 @@ import { hasPermissions } from "../../common";
 import { Image, Layout, Menu } from "antd";
 import { isBoolean, omit } from "lodash";
 // import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 
 const { Sider } = Layout;
@@ -61,13 +61,13 @@ export function Sidebar({
   SUPER_ADMIN,
   logo,
 }: SidebarProps) {
-  const history = useHistory();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [selectedMenu, setSelectedMenu] = React.useState<string>("dashboard");
 
   useEffect(() => {
-    const path = window.location.pathname.split("/");
-    setSelectedMenu(path[1]);
-  }, [history]);
+    setSelectedMenu(pathname.split("/")[1]);
+  }, [pathname]);
 
   return (
     <Sider
@@ -95,7 +95,7 @@ export function Sidebar({
         selectedKeys={[selectedMenu]}
         onSelect={({ key }) => {
           setSelectedMenu(key);
-          history.push(`/${key}`);
+          navigate(`/${key}`);
         }}
         mode="inline"
         items={getItems(authorities, menus, SUPER_ADMIN)}

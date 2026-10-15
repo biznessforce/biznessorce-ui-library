@@ -3,7 +3,7 @@ import { constructErrorMessage } from "../../common";
 import { Button, Form, Input, Modal } from "antd";
 import { trim } from "lodash";
 import { createContext, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AxiosPromise } from "axios";
 import React from "react";
 import { useAPI } from "../useAPI";
@@ -24,7 +24,7 @@ export const UserDropdownProvider = ({
   account,
   changePasswordAPI,
 }: DropdownProviderProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const [form] = Form.useForm();
 
@@ -59,7 +59,7 @@ export const UserDropdownProvider = ({
   };
 
   const onSignOut = () => {
-    history.push(`/logout?redirect=${location.pathname}`);
+    navigate(`/logout?redirect=${location.pathname}`);
   };
 
   const items = [
