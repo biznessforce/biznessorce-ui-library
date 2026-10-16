@@ -18,7 +18,7 @@ type InfoFooterProps = {
 const InfoFooter = ({ info_1, info_2 }: InfoFooterProps) => {
   return (
     <>
-      <Flex vertical className="my-3" gap={10}>
+      <Flex vertical style={{ marginBlock: 16 }} gap={10}>
         <Space>
           <Typography.Text strong type="secondary">
             {info_1.title}

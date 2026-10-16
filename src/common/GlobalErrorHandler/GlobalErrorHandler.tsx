@@ -3,6 +3,7 @@
  */
 import { Alert, Space, Typography } from "antd";
 import React, { FC } from "react";
+import { LEGACY_BOOTSTRAP } from "../legacyBootstrap";
 
 // const connector = connect(
 //   ({ config }) => ({
@@ -38,8 +39,11 @@ const GlobalErrorHandler: FC<{
             height: "40px",
             zIndex: 1401,
             borderRadius: "3px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-          className={`error-popup d-flex justify-content-center align-items-center`}
+          className="error-popup"
         >
           {globalError?.msg && (
             <Alert
@@ -58,8 +62,11 @@ const GlobalErrorHandler: FC<{
               title={
                 <Space>
                   <Typography.Paragraph
-                    className="mb-0 text-danger"
-                    style={{ maxWidth: "50rem" }}
+                    style={{
+                      maxWidth: "50rem",
+                      marginBottom: 0,
+                      color: LEGACY_BOOTSTRAP.danger,
+                    }}
                     ellipsis
                   >
                     {globalError?.msg}

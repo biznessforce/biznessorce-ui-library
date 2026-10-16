@@ -1,4 +1,4 @@
-import { Flex, Layout, Space } from "antd";
+import { Flex, Layout, Space, theme } from "antd";
 import React from "react";
 
 const { Header: AntHeader } = Layout;
@@ -10,6 +10,7 @@ export type SubheaderProps = {
 };
 
 export function Subheader({ leftSlot, rightSlot, bgColor }: SubheaderProps) {
+  const { token } = theme.useToken();
   return (
     <AntHeader
       style={{
@@ -27,7 +28,11 @@ export function Subheader({ leftSlot, rightSlot, bgColor }: SubheaderProps) {
         alignItems: "center",
       }}
     >
-      <Flex justify="space-between" align="center" className="px-4 w-100">
+      <Flex
+        justify="space-between"
+        align="center"
+        style={{ paddingInline: token.paddingLG, width: "100%" }}
+      >
         <Space>{leftSlot}</Space>
         <Space>{rightSlot}</Space>
       </Flex>

@@ -36,7 +36,7 @@ const Ezdrawer = () => {
       return (
         <Typography.Title
           level={4}
-          className="mb-0 mt-4"
+          style={{ marginBottom: 0, marginTop: 24 }}
           // style={{ width: 250 }}
           // ellipsis={{ tooltip: title }}
         >
@@ -44,7 +44,7 @@ const Ezdrawer = () => {
         </Typography.Title>
       );
     } else {
-      return <div className="mt-4">{title}</div>;
+      return <div style={{ marginTop: 24 }}>{title}</div>;
     }
   };
 

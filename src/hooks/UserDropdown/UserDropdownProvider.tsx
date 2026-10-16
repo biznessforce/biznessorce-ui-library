@@ -1,6 +1,6 @@
 import { constructErrorMessage } from "../../common";
 
-import { Button, Form, Input, Modal } from "antd";
+import { Alert, Button, Form, Input, Modal, Spin } from "antd";
 import { trim } from "lodash";
 import { createContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -98,9 +98,7 @@ export const UserDropdownProvider = ({
               disabled={submitted}
               onClick={handleSubmit}
             >
-              {loading && (
-                <span className={"fa fa-spinner fa-spin font-size-sm"} />
-              )}
+              {loading && <Spin size="small" />}
               Submit
             </Button>
           </>
@@ -108,11 +106,11 @@ export const UserDropdownProvider = ({
       >
         <Form layout="vertical" form={form}>
           {status && (
-            <div
-              className={`mb-5 alert alert-${status?.type} alert-dismissible`}
-            >
-              <div className={"alert-text font-weight-bold"}>{status?.msg}</div>
-            </div>
+            <Alert
+              type={status.type === "success" ? "success" : "error"}
+              title={status.msg}
+              style={{ marginBottom: 48 }}
+            />
           )}
           <Form.Item
             name="currentPassword"

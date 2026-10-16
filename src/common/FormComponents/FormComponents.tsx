@@ -1,5 +1,6 @@
 import { Col, Divider, Flex, Form, Row, Space, Typography } from "antd";
 import React from "react";
+import { LEGACY_BOOTSTRAP } from "../legacyBootstrap";
 
 export const FormSectionHeader = ({
   title,
@@ -8,11 +9,11 @@ export const FormSectionHeader = ({
   rightAction,
 }: any) => {
   return (
-    <Flex justify="space-between" className="w-100">
+    <Flex justify="space-between" style={{ width: "100%" }}>
       <Space size={"middle"}>
         {titleComponent ? titleComponent : <></>}
         {title && (
-          <Typography.Title level={5} className="mb-0">
+          <Typography.Title level={5} style={{ marginBottom: 0 }}>
             {title}
           </Typography.Title>
         )}
@@ -32,7 +33,12 @@ export const FormVerColAlign = ({
 }: any) => {
   return (
     <Col span={span}>
-      <Form.Item label={label} name={name} className="mb-0" {...formItemProps}>
+      <Form.Item
+        label={label}
+        name={name}
+        {...formItemProps}
+        style={{ marginBottom: 0, ...formItemProps?.style }}
+      >
         {formElement}
       </Form.Item>
     </Col>
@@ -48,12 +54,12 @@ export const FormHorColAlign = ({
 }: any) => {
   const labelSpan = 24 - elementSpan - 1;
   return (
-    <Col span={span} className="mb-3">
-      <Row className="d-flex align-items-center">
+    <Col span={span} style={{ marginBottom: 16 }}>
+      <Row align="middle">
         <Col span={labelSpan}>{label}</Col>
         <Col span={1}>:</Col>
         <Col span={elementSpan}>
-          <Form.Item name={name} className="mb-0">
+          <Form.Item name={name} style={{ marginBottom: 0 }}>
             {formElement}
           </Form.Item>
         </Col>
@@ -64,15 +70,20 @@ export const FormHorColAlign = ({
 
 export const FormHorColView = ({
   label,
-  colClassName = "mb-3",
+  colClassName,
   valueElement,
   span = 12,
   elementSpan = 15,
 }: any) => {
   const labelSpan = 24 - elementSpan - 1;
   return (
-    <Col span={span} className={colClassName}>
-      <Row className="d-flex align-items-center">
+    // Default was className "mb-3"; a consumer colClassName replaced it, so it must still be able to.
+    <Col
+      span={span}
+      className={colClassName}
+      style={colClassName === undefined ? { marginBottom: 16 } : undefined}
+    >
+      <Row align="middle">
         <Col span={labelSpan}>{label}</Col>
         <Col span={1}>:</Col>
         <Col span={elementSpan}>{valueElement}</Col>
@@ -99,10 +110,16 @@ export function FormColField({
   flex?: boolean;
 }) {
   return (
-    <Col span={span} className="px-2 py-0">
+    <Col span={span} style={{ paddingInline: 8, paddingBlock: 0 }}>
       <div>
         {label && (
-          <Typography.Text className="col text-left p-1 text-muted">
+          <Typography.Text
+            style={{
+              textAlign: "left",
+              padding: 4,
+              color: LEGACY_BOOTSTRAP.muted,
+            }}
+          >
             {label}
           </Typography.Text>
         )}
@@ -110,10 +127,11 @@ export function FormColField({
 
         {!valueContainer ? (
           <Typography.Text
-            className={`col text-left p-1 font-weight-bold ${
-              !textColor && "text-dark"
-            } `}
-            style={{ color: textColor && textColor }}
+            style={{
+              textAlign: "left",
+              padding: 4,
+              color: textColor || LEGACY_BOOTSTRAP.body,
+            }}
           >
             {value}
           </Typography.Text>
@@ -122,10 +140,7 @@ export function FormColField({
         )}
         <br />
         {!hideDivider && (
-          <Divider
-            className="col text-left p-1 "
-            style={{ margin: "10px 0px" }}
-          />
+          <Divider style={{ margin: "10px 0px", padding: 4, textAlign: "left" }} />
         )}
       </div>
     </Col>

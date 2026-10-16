@@ -36,7 +36,7 @@ export function Header({
   dropdownMenu,
 }: HeaderProps) {
   const {
-    token: { colorBgContainer },
+    token: { colorBgContainer, paddingLG, marginXS, fontWeightStrong },
   } = theme.useToken();
 
   const [isFullScreen, setFullScreen] = React.useState(document.fullscreen);
@@ -58,17 +58,24 @@ export function Header({
         alignItems: "center",
       }}
     >
-      <Flex justify="space-between" align="center" className="h-100 w-100 px-4">
+      <Flex
+        justify="space-between"
+        align="center"
+        style={{ height: "100%", width: "100%", paddingInline: paddingLG }}
+      >
         <Space>
           {typeof title === "string" ? (
-            <Typography.Title level={5} className="mb-0 fw-semibold">
+            <Typography.Title
+              level={5}
+              style={{ marginBottom: 0, fontWeight: fontWeightStrong }}
+            >
               {title}
             </Typography.Title>
           ) : (
             <>{title}</>
           )}
 
-          <Space className="ms-2">{toolSlot}</Space>
+          <Space style={{ marginInlineStart: marginXS }}>{toolSlot}</Space>
         </Space>
         <Space>
           {rightToolSlot}

@@ -1,6 +1,7 @@
 import { CloudUploadOutlined, FileOutlined } from "@ant-design/icons";
 import { Alert, Button, Modal, Space, Spin, Typography } from "antd";
 import React, { useRef } from "react";
+import { LEGACY_BOOTSTRAP } from "../legacyBootstrap";
 
 export const FILE_UPLOAD_ACCEPT_FORMAT =
   ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel";
@@ -110,25 +111,29 @@ const FileUploadContainer = ({
     >
       {error && error.msg && (
         <Alert
-          className="mb-5"
+          style={{ marginBottom: 48 }}
           title={error.msg}
           type={error.type as any}
           closable
         />
       )}
-      <Typography.Text className={"py-2"}>
+      <Typography.Text style={{ paddingBlock: 8 }}>
         {FILE_UPLOAD_MESSAGE}
       </Typography.Text>
 
-      <div className={"content mt-2"}>
+      <div style={{ marginTop: 8 }}>
         <div
-          className={
-            "d-flex justify-content-center align-items-center border border-muted bg-light rounded-3 m-1"
-          }
           style={{
             height: "180px",
             cursor: "pointer",
-            borderStyle: "dashed !important",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            // Bootstrap `.border` (!important, solid): the old inline "dashed !important" was invalid and never applied.
+            border: `1px solid ${LEGACY_BOOTSTRAP.border}`,
+            background: LEGACY_BOOTSTRAP.light,
+            borderRadius: 8,
+            margin: 4,
           }}
           onDragOver={(e) => e.preventDefault()}
           onDragEnter={(e) => e.preventDefault()}
@@ -136,27 +141,38 @@ const FileUploadContainer = ({
           onDrop={fileDrop}
           onClick={fileInputClicked}
         >
-          <div className={"text-center"}>
+          {/* Icon, file name and validation message stacked vertically (user request 2026-10-16). */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 8,
+              textAlign: "center",
+            }}
+          >
             {!selectedFile ? (
               <Space orientation="vertical">
-                <CloudUploadOutlined className="fs-3" />
+                <CloudUploadOutlined style={{ fontSize: 28 }} />
                 <Typography.Text>{DRAG_DROP_FILE_MESSAGE}</Typography.Text>
               </Space>
             ) : (
               <>
                 <Space orientation="vertical">
-                  <FileOutlined className="fs-3" />
+                  <FileOutlined style={{ fontSize: 28 }} />
                   <Typography.Text>{selectedFile?.name}</Typography.Text>
                 </Space>
               </>
             )}
             {errorMsg && (
-              <Typography.Text className={"text-danger"}>
+              <Typography.Text
+                style={{ color: LEGACY_BOOTSTRAP.danger }}
+              >
                 {errorMsg}
               </Typography.Text>
             )}
             <input
-              className={"file-input d-none"}
+              style={{ display: "none" }}
               accept={accept}
               type={"file"}
               onChange={fileSelected}

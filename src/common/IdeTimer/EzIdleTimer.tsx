@@ -1,4 +1,4 @@
-import { Modal, Progress, Typography } from "antd";
+import { Button, Modal, Progress, Typography } from "antd";
 import React, { FC } from "react";
 import { useEffect, useState } from "react";
 import { useIdleTimer } from "react-idle-timer";
@@ -7,7 +7,7 @@ const twoColors = { "0%": "#108ee9", "100%": "#87d068" };
 
 const TimeoutDialog = ({ timeoutSeconds }: { timeoutSeconds: number }) => (
   <>
-    <Typography.Text className={"py-2"}>
+    <Typography.Text style={{ paddingBlock: 8 }}>
       Your session is about to expire. Logging out in {timeoutSeconds}s seconds.
     </Typography.Text>
 
@@ -115,15 +115,17 @@ const EZIdleTimer: FC<{
       style={{ top: 0 }}
       footer={
         <>
-          <button className="btn btn-sm btn-light mx-2" onClick={onIdle}>
+          <Button size="small" style={{ marginInline: 8 }} onClick={onIdle}>
             Logout
-          </button>
-          <button
-            className="btn btn-sm btn-primary mx-2"
+          </Button>
+          <Button
+            type="primary"
+            size="small"
+            style={{ marginInline: 8 }}
             onClick={handleStillHere}
           >
             Stay Connected
-          </button>
+          </Button>
         </>
       }
     >

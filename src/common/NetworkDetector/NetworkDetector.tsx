@@ -48,8 +48,11 @@ const NetworkDetector: FC<NetworkDetectorProps> = ({ children }) => {
             height: "40px",
             zIndex: 1401,
             borderRadius: "3px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-          className={`offline-popup d-flex justify-content-center align-items-center`}
+          className="offline-popup"
         >
           <Alert
             type={state.type === "online" ? "success" : "warning"}

@@ -71,13 +71,17 @@ const DataContainer: FC<DataContainerProps> = ({
 
   return (
     <div
-      className={`d-flex justify-content-center align-items-center w-100 h-100 ${
-        baseClass || ""
-      }`}
+      className={baseClass || undefined}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
+      }}
     >
-      <div className="not-found-container">
+      <div>
         <div
-          className="not-found-image-container"
           style={{ textAlign: "center" }}
         >
           {type === NO_DATA_CONTAINER_MESSAGES.DEV.key ? (
@@ -108,8 +112,8 @@ const DataContainer: FC<DataContainerProps> = ({
             )}
         </div>
 
-        <div className="py-10">
-          <div className="message text-center">
+        <div>
+          <div style={{ textAlign: "center" }}>
             {/* Data Not Found Content */}
             {type === NO_DATA_CONTAINER_MESSAGES.NO_DATA.key && (
               <>

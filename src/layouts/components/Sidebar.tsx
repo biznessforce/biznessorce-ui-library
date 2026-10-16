@@ -84,8 +84,13 @@ export function Sidebar({
       }}
     >
       <div
-        className="demo-logo-vertical d-flex justify-content-center align-items-center"
-        style={{ height: "64px", background: logoBgColor || "#002140" }}
+        style={{
+          height: "64px",
+          background: logoBgColor || "#002140",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
         {logo && <Image src={logo} alt="logo" preview={false} />}
       </div>
